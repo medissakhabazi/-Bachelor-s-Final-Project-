@@ -1,0 +1,99 @@
+Loading MNIST dataset...
+x_test shape: (10000, 28, 28)
+y_test shape: (10000,)
+
+Evaluating baseline model...
+313/313 ━━━━━━━━━━━━━━━━━━━━ 1s 1ms/step - accuracy: 0.9800 - loss: 0.0826    
+
+Baseline accuracy: 98.0000%
+
+Number of weight tensors: 4
+
+======================================================================
+Applying Power-of-Two approximation
+======================================================================
+
+============================================================
+PoT exponent distribution: Tensor 0
+============================================================
+2^ -2 :    21959 weights   [SUPPORTED]
+2^ -1 :     7906 weights   [SUPPORTED]
+2^  0 :      436 weights   [SUPPORTED]
+2^  1 :        1 weights   [SUPPORTED]
+
+------------------------------------------------------------
+Unsupported exponents:
+------------------------------------------------------------
+NONE
+All PoT weights are supported by current C++ code.
+
+------------------------------------------------------------
+Summary
+------------------------------------------------------------
+Non-zero weights       : 30302
+Unsupported weights    : 0
+Unsupported percentage : 0.0000%
+============================================================
+
+Tensor 1: bias/vector -> unchanged
+
+============================================================
+PoT exponent distribution: Tensor 2
+============================================================
+2^ -2 :      393 weights   [SUPPORTED]
+2^ -1 :      287 weights   [SUPPORTED]
+2^  0 :      204 weights   [SUPPORTED]
+2^  1 :       25 weights   [SUPPORTED]
+
+------------------------------------------------------------
+Unsupported exponents:
+------------------------------------------------------------
+NONE
+All PoT weights are supported by current C++ code.
+
+------------------------------------------------------------
+Summary
+------------------------------------------------------------
+Non-zero weights       : 909
+Unsupported weights    : 0
+Unsupported percentage : 0.0000%
+============================================================
+
+Tensor 3: bias/vector -> unchanged
+
+======================================================================
+Global PoT statistics
+======================================================================
+Total parameters : 101770
+Changed values   : 101632
+Pruned values    : 70421
+Changed ratio    : 99.8644%
+Pruned ratio     : 69.1962%
+
+Setting approximate weights...
+Approximate weights applied.
+
+Evaluating approximate PoT model...
+313/313 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - accuracy: 0.9696 - loss: 0.1078  
+
+Approximate accuracy: 96.9600%
+
+======================================================================
+Accuracy comparison
+======================================================================
+Baseline accuracy    : 98.0000%
+PoT accuracy         : 96.9600%
+Accuracy difference  : -1.0400%
+
+Saving approximate model...
+Saved successfully to:
+c:\Users\Lenovo\Desktop\porpozal\Approximate_Multiplier_Dataset_Modeling\models\mnist_approx_pot_logits_test.keras
+
+======================================================================
+DONE
+======================================================================
+Baseline accuracy : 98.0000%
+PoT accuracy      : 96.9600%
+Threshold         : 0.18
+Output model      : c:\Users\Lenovo\Desktop\porpozal\Approximate_Multiplier_Dataset_Modeling\models\mnist_approx_pot_logits_test.keras
+======================================================================
