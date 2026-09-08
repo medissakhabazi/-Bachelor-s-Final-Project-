@@ -1,0 +1,1155 @@
+
+
+================================================================
+== Synthesis Summary Report of 'myproject'
+================================================================
++ General Information: 
+    * Date:           Sun Sep  6 12:18:06 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        myproject_prj
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcu250-figd2104-2L-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+----------+----+------------+------------+-----+
+    |                                  Modules                                 | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |          |    |            |            |     |
+    |                                  & Loops                                 | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|   BRAM   | DSP|     FF     |     LUT    | URAM|
+    +--------------------------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+----------+----+------------+------------+-----+
+    |+ myproject*                                                              |     -|  0.09|     1038|  5.190e+03|         -|      640|     -|  dataflow|  44 (~0%)|   -|  66786 (1%)|  98519 (5%)|    -|
+    | + dense_resource_rf_leq_nin_ap_fixed_ap_fixed_43_23_5_3_0_config3_s      |    II|  0.34|      394|  1.970e+03|         -|      392|     -|    rewind|  40 (~0%)|   -|  37811 (1%)|  67489 (3%)|    -|
+    |  o ReuseLoop                                                             |     -|  3.65|      393|  1.965e+03|         3|        1|   392|       yes|         -|   -|           -|           -|    -|
+    | + relu_ap_fixed_43_23_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_s           |    II|  1.02|        0|      0.000|         -|        1|     -|       yes|         -|   -|  2050 (~0%)|  9611 (~0%)|    -|
+    | + dense_resource_rf_gt_nin_rem0_ap_fixed_ap_fixed_40_20_5_3_0_config6_s  |    II|  0.09|      642|  3.210e+03|         -|      640|     -|    rewind|   4 (~0%)|   -|  5037 (~0%)|  5793 (~0%)|    -|
+    |  o ReuseLoop                                                             |     -|  3.65|      641|  3.205e+03|         3|        1|   640|       yes|         -|   -|           -|           -|    -|
+    +--------------------------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+----------+----+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* Other Ports
++--------------+--------+-----------+----------+
+| Port         | Mode   | Direction | Bitwidth |
++--------------+--------+-----------+----------+
+| input_layer  | ap_vld | in        | 12544    |
+| layer6_out_0 | ap_vld | out       | 40       |
+| layer6_out_1 | ap_vld | out       | 40       |
+| layer6_out_2 | ap_vld | out       | 40       |
+| layer6_out_3 | ap_vld | out       | 40       |
+| layer6_out_4 | ap_vld | out       | 40       |
+| layer6_out_5 | ap_vld | out       | 40       |
+| layer6_out_6 | ap_vld | out       | 40       |
+| layer6_out_7 | ap_vld | out       | 40       |
+| layer6_out_8 | ap_vld | out       | 40       |
+| layer6_out_9 | ap_vld | out       | 40       |
++--------------+--------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-------------+-----------+---------------------------------------+
+| Argument    | Direction | Datatype                              |
++-------------+-----------+---------------------------------------+
+| input_layer | in        | ap_fixed<16, 6, AP_TRN, AP_WRAP, 0>*  |
+| layer6_out  | out       | ap_fixed<40, 20, AP_TRN, AP_WRAP, 0>* |
++-------------+-----------+---------------------------------------+
+
+* SW-to-HW Mapping
++-------------+---------------------+---------+
+| Argument    | HW Interface        | HW Type |
++-------------+---------------------+---------+
+| input_layer | input_layer         | port    |
+| input_layer | input_layer_ap_vld  | port    |
+| layer6_out  | layer6_out_0        | port    |
+| layer6_out  | layer6_out_0_ap_vld | port    |
+| layer6_out  | layer6_out_1        | port    |
+| layer6_out  | layer6_out_1_ap_vld | port    |
+| layer6_out  | layer6_out_2        | port    |
+| layer6_out  | layer6_out_2_ap_vld | port    |
+| layer6_out  | layer6_out_3        | port    |
+| layer6_out  | layer6_out_3_ap_vld | port    |
+| layer6_out  | layer6_out_4        | port    |
+| layer6_out  | layer6_out_4_ap_vld | port    |
+| layer6_out  | layer6_out_5        | port    |
+| layer6_out  | layer6_out_5_ap_vld | port    |
+| layer6_out  | layer6_out_6        | port    |
+| layer6_out  | layer6_out_6_ap_vld | port    |
+| layer6_out  | layer6_out_7        | port    |
+| layer6_out  | layer6_out_7_ap_vld | port    |
+| layer6_out  | layer6_out_8        | port    |
+| layer6_out  | layer6_out_8_ap_vld | port    |
+| layer6_out  | layer6_out_9        | port    |
+| layer6_out  | layer6_out_9_ap_vld | port    |
++-------------+---------------------+---------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------------------------------------------+-----+--------+--------------+-----+--------+---------+
+| Name                                                                     | DSP | Pragma | Variable     | Op  | Impl   | Latency |
++--------------------------------------------------------------------------+-----+--------+--------------+-----+--------+---------+
+| + myproject                                                              | 0   |        |              |     |        |         |
+|  + dense_resource_rf_leq_nin_ap_fixed_ap_fixed_43_23_5_3_0_config3_s     | 0   |        |              |     |        |         |
+|    y_4_fu_15370_p2                                                       |     |        | y_4          | sub | fabric | 0       |
+|    add_ln62_fu_3873_p2                                                   |     |        | add_ln62     | add | fabric | 0       |
+|    y_9_fu_15477_p2                                                       |     |        | y_9          | sub | fabric | 0       |
+|    add_ln58_fu_15509_p2                                                  |     |        | add_ln58     | add | fabric | 0       |
+|    acc_fu_15519_p2                                                       |     |        | acc          | add | fabric | 0       |
+|    y_11_fu_15544_p2                                                      |     |        | y_11         | sub | fabric | 0       |
+|    y_13_fu_15626_p2                                                      |     |        | y_13         | sub | fabric | 0       |
+|    add_ln58_2_fu_15658_p2                                                |     |        | add_ln58_2   | add | fabric | 0       |
+|    acc_128_fu_15668_p2                                                   |     |        | acc_128      | add | fabric | 0       |
+|    y_15_fu_15693_p2                                                      |     |        | y_15         | sub | fabric | 0       |
+|    y_17_fu_15775_p2                                                      |     |        | y_17         | sub | fabric | 0       |
+|    add_ln58_4_fu_15807_p2                                                |     |        | add_ln58_4   | add | fabric | 0       |
+|    acc_129_fu_15817_p2                                                   |     |        | acc_129      | add | fabric | 0       |
+|    y_19_fu_15842_p2                                                      |     |        | y_19         | sub | fabric | 0       |
+|    y_21_fu_15924_p2                                                      |     |        | y_21         | sub | fabric | 0       |
+|    add_ln58_6_fu_15956_p2                                                |     |        | add_ln58_6   | add | fabric | 0       |
+|    acc_130_fu_15966_p2                                                   |     |        | acc_130      | add | fabric | 0       |
+|    y_23_fu_15991_p2                                                      |     |        | y_23         | sub | fabric | 0       |
+|    y_25_fu_16073_p2                                                      |     |        | y_25         | sub | fabric | 0       |
+|    add_ln58_8_fu_16105_p2                                                |     |        | add_ln58_8   | add | fabric | 0       |
+|    acc_131_fu_16115_p2                                                   |     |        | acc_131      | add | fabric | 0       |
+|    y_27_fu_16140_p2                                                      |     |        | y_27         | sub | fabric | 0       |
+|    y_29_fu_16222_p2                                                      |     |        | y_29         | sub | fabric | 0       |
+|    add_ln58_10_fu_16254_p2                                               |     |        | add_ln58_10  | add | fabric | 0       |
+|    acc_132_fu_16264_p2                                                   |     |        | acc_132      | add | fabric | 0       |
+|    y_31_fu_16289_p2                                                      |     |        | y_31         | sub | fabric | 0       |
+|    y_33_fu_16371_p2                                                      |     |        | y_33         | sub | fabric | 0       |
+|    add_ln58_12_fu_16403_p2                                               |     |        | add_ln58_12  | add | fabric | 0       |
+|    acc_133_fu_16413_p2                                                   |     |        | acc_133      | add | fabric | 0       |
+|    y_35_fu_16438_p2                                                      |     |        | y_35         | sub | fabric | 0       |
+|    y_37_fu_16520_p2                                                      |     |        | y_37         | sub | fabric | 0       |
+|    add_ln58_14_fu_16552_p2                                               |     |        | add_ln58_14  | add | fabric | 0       |
+|    acc_134_fu_16562_p2                                                   |     |        | acc_134      | add | fabric | 0       |
+|    y_39_fu_16587_p2                                                      |     |        | y_39         | sub | fabric | 0       |
+|    y_41_fu_16669_p2                                                      |     |        | y_41         | sub | fabric | 0       |
+|    add_ln58_16_fu_16701_p2                                               |     |        | add_ln58_16  | add | fabric | 0       |
+|    acc_135_fu_16711_p2                                                   |     |        | acc_135      | add | fabric | 0       |
+|    y_43_fu_16736_p2                                                      |     |        | y_43         | sub | fabric | 0       |
+|    y_45_fu_16818_p2                                                      |     |        | y_45         | sub | fabric | 0       |
+|    add_ln58_18_fu_16850_p2                                               |     |        | add_ln58_18  | add | fabric | 0       |
+|    acc_136_fu_16860_p2                                                   |     |        | acc_136      | add | fabric | 0       |
+|    y_47_fu_16885_p2                                                      |     |        | y_47         | sub | fabric | 0       |
+|    y_49_fu_16967_p2                                                      |     |        | y_49         | sub | fabric | 0       |
+|    add_ln58_20_fu_16999_p2                                               |     |        | add_ln58_20  | add | fabric | 0       |
+|    acc_137_fu_17009_p2                                                   |     |        | acc_137      | add | fabric | 0       |
+|    y_51_fu_17034_p2                                                      |     |        | y_51         | sub | fabric | 0       |
+|    y_53_fu_17116_p2                                                      |     |        | y_53         | sub | fabric | 0       |
+|    add_ln58_22_fu_17148_p2                                               |     |        | add_ln58_22  | add | fabric | 0       |
+|    acc_138_fu_17158_p2                                                   |     |        | acc_138      | add | fabric | 0       |
+|    y_55_fu_17183_p2                                                      |     |        | y_55         | sub | fabric | 0       |
+|    y_57_fu_17265_p2                                                      |     |        | y_57         | sub | fabric | 0       |
+|    add_ln58_24_fu_17297_p2                                               |     |        | add_ln58_24  | add | fabric | 0       |
+|    acc_139_fu_17307_p2                                                   |     |        | acc_139      | add | fabric | 0       |
+|    y_59_fu_17332_p2                                                      |     |        | y_59         | sub | fabric | 0       |
+|    y_61_fu_17414_p2                                                      |     |        | y_61         | sub | fabric | 0       |
+|    add_ln58_26_fu_17446_p2                                               |     |        | add_ln58_26  | add | fabric | 0       |
+|    acc_140_fu_17456_p2                                                   |     |        | acc_140      | add | fabric | 0       |
+|    y_63_fu_17481_p2                                                      |     |        | y_63         | sub | fabric | 0       |
+|    y_65_fu_17563_p2                                                      |     |        | y_65         | sub | fabric | 0       |
+|    add_ln58_28_fu_17595_p2                                               |     |        | add_ln58_28  | add | fabric | 0       |
+|    acc_141_fu_17605_p2                                                   |     |        | acc_141      | add | fabric | 0       |
+|    y_67_fu_17630_p2                                                      |     |        | y_67         | sub | fabric | 0       |
+|    y_69_fu_17712_p2                                                      |     |        | y_69         | sub | fabric | 0       |
+|    add_ln58_30_fu_17744_p2                                               |     |        | add_ln58_30  | add | fabric | 0       |
+|    acc_142_fu_17754_p2                                                   |     |        | acc_142      | add | fabric | 0       |
+|    y_71_fu_17779_p2                                                      |     |        | y_71         | sub | fabric | 0       |
+|    y_73_fu_17861_p2                                                      |     |        | y_73         | sub | fabric | 0       |
+|    add_ln58_32_fu_17893_p2                                               |     |        | add_ln58_32  | add | fabric | 0       |
+|    acc_143_fu_17903_p2                                                   |     |        | acc_143      | add | fabric | 0       |
+|    y_75_fu_17928_p2                                                      |     |        | y_75         | sub | fabric | 0       |
+|    y_77_fu_18010_p2                                                      |     |        | y_77         | sub | fabric | 0       |
+|    add_ln58_34_fu_18042_p2                                               |     |        | add_ln58_34  | add | fabric | 0       |
+|    acc_144_fu_18052_p2                                                   |     |        | acc_144      | add | fabric | 0       |
+|    y_79_fu_18077_p2                                                      |     |        | y_79         | sub | fabric | 0       |
+|    y_81_fu_18159_p2                                                      |     |        | y_81         | sub | fabric | 0       |
+|    add_ln58_36_fu_18191_p2                                               |     |        | add_ln58_36  | add | fabric | 0       |
+|    acc_145_fu_18201_p2                                                   |     |        | acc_145      | add | fabric | 0       |
+|    y_83_fu_18226_p2                                                      |     |        | y_83         | sub | fabric | 0       |
+|    y_85_fu_18308_p2                                                      |     |        | y_85         | sub | fabric | 0       |
+|    add_ln58_38_fu_18340_p2                                               |     |        | add_ln58_38  | add | fabric | 0       |
+|    acc_146_fu_18350_p2                                                   |     |        | acc_146      | add | fabric | 0       |
+|    y_87_fu_18375_p2                                                      |     |        | y_87         | sub | fabric | 0       |
+|    y_89_fu_18457_p2                                                      |     |        | y_89         | sub | fabric | 0       |
+|    add_ln58_40_fu_18489_p2                                               |     |        | add_ln58_40  | add | fabric | 0       |
+|    acc_147_fu_18499_p2                                                   |     |        | acc_147      | add | fabric | 0       |
+|    y_91_fu_18524_p2                                                      |     |        | y_91         | sub | fabric | 0       |
+|    y_93_fu_18606_p2                                                      |     |        | y_93         | sub | fabric | 0       |
+|    add_ln58_42_fu_18638_p2                                               |     |        | add_ln58_42  | add | fabric | 0       |
+|    acc_148_fu_18648_p2                                                   |     |        | acc_148      | add | fabric | 0       |
+|    y_95_fu_18673_p2                                                      |     |        | y_95         | sub | fabric | 0       |
+|    y_97_fu_18755_p2                                                      |     |        | y_97         | sub | fabric | 0       |
+|    add_ln58_44_fu_18787_p2                                               |     |        | add_ln58_44  | add | fabric | 0       |
+|    acc_149_fu_18797_p2                                                   |     |        | acc_149      | add | fabric | 0       |
+|    y_99_fu_18822_p2                                                      |     |        | y_99         | sub | fabric | 0       |
+|    y_101_fu_18904_p2                                                     |     |        | y_101        | sub | fabric | 0       |
+|    add_ln58_46_fu_18936_p2                                               |     |        | add_ln58_46  | add | fabric | 0       |
+|    acc_150_fu_18946_p2                                                   |     |        | acc_150      | add | fabric | 0       |
+|    y_103_fu_18971_p2                                                     |     |        | y_103        | sub | fabric | 0       |
+|    y_105_fu_19053_p2                                                     |     |        | y_105        | sub | fabric | 0       |
+|    add_ln58_48_fu_19085_p2                                               |     |        | add_ln58_48  | add | fabric | 0       |
+|    acc_151_fu_19095_p2                                                   |     |        | acc_151      | add | fabric | 0       |
+|    y_107_fu_19120_p2                                                     |     |        | y_107        | sub | fabric | 0       |
+|    y_109_fu_19202_p2                                                     |     |        | y_109        | sub | fabric | 0       |
+|    add_ln58_50_fu_19234_p2                                               |     |        | add_ln58_50  | add | fabric | 0       |
+|    acc_152_fu_19244_p2                                                   |     |        | acc_152      | add | fabric | 0       |
+|    y_111_fu_19269_p2                                                     |     |        | y_111        | sub | fabric | 0       |
+|    y_113_fu_19351_p2                                                     |     |        | y_113        | sub | fabric | 0       |
+|    add_ln58_52_fu_19383_p2                                               |     |        | add_ln58_52  | add | fabric | 0       |
+|    acc_153_fu_19393_p2                                                   |     |        | acc_153      | add | fabric | 0       |
+|    y_115_fu_19418_p2                                                     |     |        | y_115        | sub | fabric | 0       |
+|    y_117_fu_19500_p2                                                     |     |        | y_117        | sub | fabric | 0       |
+|    add_ln58_54_fu_19532_p2                                               |     |        | add_ln58_54  | add | fabric | 0       |
+|    acc_154_fu_19542_p2                                                   |     |        | acc_154      | add | fabric | 0       |
+|    y_119_fu_19567_p2                                                     |     |        | y_119        | sub | fabric | 0       |
+|    y_121_fu_19649_p2                                                     |     |        | y_121        | sub | fabric | 0       |
+|    add_ln58_56_fu_19681_p2                                               |     |        | add_ln58_56  | add | fabric | 0       |
+|    acc_155_fu_19691_p2                                                   |     |        | acc_155      | add | fabric | 0       |
+|    y_123_fu_19716_p2                                                     |     |        | y_123        | sub | fabric | 0       |
+|    y_125_fu_19798_p2                                                     |     |        | y_125        | sub | fabric | 0       |
+|    add_ln58_58_fu_19830_p2                                               |     |        | add_ln58_58  | add | fabric | 0       |
+|    acc_156_fu_19840_p2                                                   |     |        | acc_156      | add | fabric | 0       |
+|    y_127_fu_19865_p2                                                     |     |        | y_127        | sub | fabric | 0       |
+|    y_129_fu_19947_p2                                                     |     |        | y_129        | sub | fabric | 0       |
+|    add_ln58_60_fu_19979_p2                                               |     |        | add_ln58_60  | add | fabric | 0       |
+|    acc_157_fu_19989_p2                                                   |     |        | acc_157      | add | fabric | 0       |
+|    y_131_fu_20014_p2                                                     |     |        | y_131        | sub | fabric | 0       |
+|    y_133_fu_20096_p2                                                     |     |        | y_133        | sub | fabric | 0       |
+|    add_ln58_62_fu_20128_p2                                               |     |        | add_ln58_62  | add | fabric | 0       |
+|    acc_158_fu_20138_p2                                                   |     |        | acc_158      | add | fabric | 0       |
+|    y_135_fu_20163_p2                                                     |     |        | y_135        | sub | fabric | 0       |
+|    y_137_fu_20245_p2                                                     |     |        | y_137        | sub | fabric | 0       |
+|    add_ln58_64_fu_20277_p2                                               |     |        | add_ln58_64  | add | fabric | 0       |
+|    acc_159_fu_20287_p2                                                   |     |        | acc_159      | add | fabric | 0       |
+|    y_139_fu_20312_p2                                                     |     |        | y_139        | sub | fabric | 0       |
+|    y_141_fu_20394_p2                                                     |     |        | y_141        | sub | fabric | 0       |
+|    add_ln58_66_fu_20426_p2                                               |     |        | add_ln58_66  | add | fabric | 0       |
+|    acc_160_fu_20436_p2                                                   |     |        | acc_160      | add | fabric | 0       |
+|    y_143_fu_20461_p2                                                     |     |        | y_143        | sub | fabric | 0       |
+|    y_145_fu_20543_p2                                                     |     |        | y_145        | sub | fabric | 0       |
+|    add_ln58_68_fu_20575_p2                                               |     |        | add_ln58_68  | add | fabric | 0       |
+|    acc_161_fu_20585_p2                                                   |     |        | acc_161      | add | fabric | 0       |
+|    y_147_fu_20610_p2                                                     |     |        | y_147        | sub | fabric | 0       |
+|    y_149_fu_20692_p2                                                     |     |        | y_149        | sub | fabric | 0       |
+|    add_ln58_70_fu_20724_p2                                               |     |        | add_ln58_70  | add | fabric | 0       |
+|    acc_162_fu_20734_p2                                                   |     |        | acc_162      | add | fabric | 0       |
+|    y_151_fu_20759_p2                                                     |     |        | y_151        | sub | fabric | 0       |
+|    y_153_fu_20841_p2                                                     |     |        | y_153        | sub | fabric | 0       |
+|    add_ln58_72_fu_20873_p2                                               |     |        | add_ln58_72  | add | fabric | 0       |
+|    acc_163_fu_20883_p2                                                   |     |        | acc_163      | add | fabric | 0       |
+|    y_155_fu_20908_p2                                                     |     |        | y_155        | sub | fabric | 0       |
+|    y_157_fu_20990_p2                                                     |     |        | y_157        | sub | fabric | 0       |
+|    add_ln58_74_fu_21022_p2                                               |     |        | add_ln58_74  | add | fabric | 0       |
+|    acc_164_fu_21032_p2                                                   |     |        | acc_164      | add | fabric | 0       |
+|    y_159_fu_21057_p2                                                     |     |        | y_159        | sub | fabric | 0       |
+|    y_161_fu_21139_p2                                                     |     |        | y_161        | sub | fabric | 0       |
+|    add_ln58_76_fu_21171_p2                                               |     |        | add_ln58_76  | add | fabric | 0       |
+|    acc_165_fu_21181_p2                                                   |     |        | acc_165      | add | fabric | 0       |
+|    y_163_fu_21206_p2                                                     |     |        | y_163        | sub | fabric | 0       |
+|    y_165_fu_21288_p2                                                     |     |        | y_165        | sub | fabric | 0       |
+|    add_ln58_78_fu_21320_p2                                               |     |        | add_ln58_78  | add | fabric | 0       |
+|    acc_166_fu_21330_p2                                                   |     |        | acc_166      | add | fabric | 0       |
+|    y_167_fu_21355_p2                                                     |     |        | y_167        | sub | fabric | 0       |
+|    y_169_fu_21437_p2                                                     |     |        | y_169        | sub | fabric | 0       |
+|    add_ln58_80_fu_21469_p2                                               |     |        | add_ln58_80  | add | fabric | 0       |
+|    acc_167_fu_21479_p2                                                   |     |        | acc_167      | add | fabric | 0       |
+|    y_171_fu_21504_p2                                                     |     |        | y_171        | sub | fabric | 0       |
+|    y_173_fu_21586_p2                                                     |     |        | y_173        | sub | fabric | 0       |
+|    add_ln58_82_fu_21618_p2                                               |     |        | add_ln58_82  | add | fabric | 0       |
+|    acc_168_fu_21628_p2                                                   |     |        | acc_168      | add | fabric | 0       |
+|    y_175_fu_21653_p2                                                     |     |        | y_175        | sub | fabric | 0       |
+|    y_177_fu_21735_p2                                                     |     |        | y_177        | sub | fabric | 0       |
+|    add_ln58_84_fu_21767_p2                                               |     |        | add_ln58_84  | add | fabric | 0       |
+|    acc_169_fu_21777_p2                                                   |     |        | acc_169      | add | fabric | 0       |
+|    y_179_fu_21802_p2                                                     |     |        | y_179        | sub | fabric | 0       |
+|    y_181_fu_21884_p2                                                     |     |        | y_181        | sub | fabric | 0       |
+|    add_ln58_86_fu_21916_p2                                               |     |        | add_ln58_86  | add | fabric | 0       |
+|    acc_170_fu_21926_p2                                                   |     |        | acc_170      | add | fabric | 0       |
+|    y_183_fu_21951_p2                                                     |     |        | y_183        | sub | fabric | 0       |
+|    y_185_fu_22033_p2                                                     |     |        | y_185        | sub | fabric | 0       |
+|    add_ln58_88_fu_22065_p2                                               |     |        | add_ln58_88  | add | fabric | 0       |
+|    acc_171_fu_22075_p2                                                   |     |        | acc_171      | add | fabric | 0       |
+|    y_187_fu_22100_p2                                                     |     |        | y_187        | sub | fabric | 0       |
+|    y_189_fu_22182_p2                                                     |     |        | y_189        | sub | fabric | 0       |
+|    add_ln58_90_fu_22214_p2                                               |     |        | add_ln58_90  | add | fabric | 0       |
+|    acc_172_fu_22224_p2                                                   |     |        | acc_172      | add | fabric | 0       |
+|    y_191_fu_22249_p2                                                     |     |        | y_191        | sub | fabric | 0       |
+|    y_193_fu_22331_p2                                                     |     |        | y_193        | sub | fabric | 0       |
+|    add_ln58_92_fu_22363_p2                                               |     |        | add_ln58_92  | add | fabric | 0       |
+|    acc_173_fu_22373_p2                                                   |     |        | acc_173      | add | fabric | 0       |
+|    y_195_fu_22398_p2                                                     |     |        | y_195        | sub | fabric | 0       |
+|    y_197_fu_22480_p2                                                     |     |        | y_197        | sub | fabric | 0       |
+|    add_ln58_94_fu_22512_p2                                               |     |        | add_ln58_94  | add | fabric | 0       |
+|    acc_174_fu_22522_p2                                                   |     |        | acc_174      | add | fabric | 0       |
+|    y_199_fu_22547_p2                                                     |     |        | y_199        | sub | fabric | 0       |
+|    y_201_fu_22629_p2                                                     |     |        | y_201        | sub | fabric | 0       |
+|    add_ln58_96_fu_22661_p2                                               |     |        | add_ln58_96  | add | fabric | 0       |
+|    acc_175_fu_22671_p2                                                   |     |        | acc_175      | add | fabric | 0       |
+|    y_203_fu_22696_p2                                                     |     |        | y_203        | sub | fabric | 0       |
+|    y_205_fu_22778_p2                                                     |     |        | y_205        | sub | fabric | 0       |
+|    add_ln58_98_fu_22810_p2                                               |     |        | add_ln58_98  | add | fabric | 0       |
+|    acc_176_fu_22820_p2                                                   |     |        | acc_176      | add | fabric | 0       |
+|    y_207_fu_22845_p2                                                     |     |        | y_207        | sub | fabric | 0       |
+|    y_209_fu_22927_p2                                                     |     |        | y_209        | sub | fabric | 0       |
+|    add_ln58_100_fu_22959_p2                                              |     |        | add_ln58_100 | add | fabric | 0       |
+|    acc_177_fu_22969_p2                                                   |     |        | acc_177      | add | fabric | 0       |
+|    y_211_fu_22994_p2                                                     |     |        | y_211        | sub | fabric | 0       |
+|    y_213_fu_23076_p2                                                     |     |        | y_213        | sub | fabric | 0       |
+|    add_ln58_102_fu_23108_p2                                              |     |        | add_ln58_102 | add | fabric | 0       |
+|    acc_178_fu_23118_p2                                                   |     |        | acc_178      | add | fabric | 0       |
+|    y_215_fu_23143_p2                                                     |     |        | y_215        | sub | fabric | 0       |
+|    y_217_fu_23225_p2                                                     |     |        | y_217        | sub | fabric | 0       |
+|    add_ln58_104_fu_23257_p2                                              |     |        | add_ln58_104 | add | fabric | 0       |
+|    acc_179_fu_23267_p2                                                   |     |        | acc_179      | add | fabric | 0       |
+|    y_219_fu_23292_p2                                                     |     |        | y_219        | sub | fabric | 0       |
+|    y_221_fu_23374_p2                                                     |     |        | y_221        | sub | fabric | 0       |
+|    add_ln58_106_fu_23406_p2                                              |     |        | add_ln58_106 | add | fabric | 0       |
+|    acc_180_fu_23416_p2                                                   |     |        | acc_180      | add | fabric | 0       |
+|    y_223_fu_23441_p2                                                     |     |        | y_223        | sub | fabric | 0       |
+|    y_225_fu_23523_p2                                                     |     |        | y_225        | sub | fabric | 0       |
+|    add_ln58_108_fu_23555_p2                                              |     |        | add_ln58_108 | add | fabric | 0       |
+|    acc_181_fu_23565_p2                                                   |     |        | acc_181      | add | fabric | 0       |
+|    y_227_fu_23590_p2                                                     |     |        | y_227        | sub | fabric | 0       |
+|    y_229_fu_23672_p2                                                     |     |        | y_229        | sub | fabric | 0       |
+|    add_ln58_110_fu_23704_p2                                              |     |        | add_ln58_110 | add | fabric | 0       |
+|    acc_182_fu_23714_p2                                                   |     |        | acc_182      | add | fabric | 0       |
+|    y_231_fu_23739_p2                                                     |     |        | y_231        | sub | fabric | 0       |
+|    y_233_fu_23821_p2                                                     |     |        | y_233        | sub | fabric | 0       |
+|    add_ln58_112_fu_23853_p2                                              |     |        | add_ln58_112 | add | fabric | 0       |
+|    acc_183_fu_23863_p2                                                   |     |        | acc_183      | add | fabric | 0       |
+|    y_235_fu_23888_p2                                                     |     |        | y_235        | sub | fabric | 0       |
+|    y_237_fu_23970_p2                                                     |     |        | y_237        | sub | fabric | 0       |
+|    add_ln58_114_fu_24002_p2                                              |     |        | add_ln58_114 | add | fabric | 0       |
+|    acc_184_fu_24012_p2                                                   |     |        | acc_184      | add | fabric | 0       |
+|    y_239_fu_24037_p2                                                     |     |        | y_239        | sub | fabric | 0       |
+|    y_241_fu_24119_p2                                                     |     |        | y_241        | sub | fabric | 0       |
+|    add_ln58_116_fu_24151_p2                                              |     |        | add_ln58_116 | add | fabric | 0       |
+|    acc_185_fu_24161_p2                                                   |     |        | acc_185      | add | fabric | 0       |
+|    y_243_fu_24186_p2                                                     |     |        | y_243        | sub | fabric | 0       |
+|    y_245_fu_24268_p2                                                     |     |        | y_245        | sub | fabric | 0       |
+|    add_ln58_118_fu_24300_p2                                              |     |        | add_ln58_118 | add | fabric | 0       |
+|    acc_186_fu_24310_p2                                                   |     |        | acc_186      | add | fabric | 0       |
+|    y_247_fu_24335_p2                                                     |     |        | y_247        | sub | fabric | 0       |
+|    y_249_fu_24417_p2                                                     |     |        | y_249        | sub | fabric | 0       |
+|    add_ln58_120_fu_24449_p2                                              |     |        | add_ln58_120 | add | fabric | 0       |
+|    acc_187_fu_24459_p2                                                   |     |        | acc_187      | add | fabric | 0       |
+|    y_251_fu_24484_p2                                                     |     |        | y_251        | sub | fabric | 0       |
+|    y_253_fu_24566_p2                                                     |     |        | y_253        | sub | fabric | 0       |
+|    add_ln58_122_fu_24598_p2                                              |     |        | add_ln58_122 | add | fabric | 0       |
+|    acc_188_fu_24608_p2                                                   |     |        | acc_188      | add | fabric | 0       |
+|    y_255_fu_24633_p2                                                     |     |        | y_255        | sub | fabric | 0       |
+|    y_257_fu_24715_p2                                                     |     |        | y_257        | sub | fabric | 0       |
+|    add_ln58_124_fu_24747_p2                                              |     |        | add_ln58_124 | add | fabric | 0       |
+|    acc_189_fu_24757_p2                                                   |     |        | acc_189      | add | fabric | 0       |
+|    y_259_fu_24782_p2                                                     |     |        | y_259        | sub | fabric | 0       |
+|    y_261_fu_24864_p2                                                     |     |        | y_261        | sub | fabric | 0       |
+|    add_ln58_126_fu_24896_p2                                              |     |        | add_ln58_126 | add | fabric | 0       |
+|    acc_190_fu_24906_p2                                                   |     |        | acc_190      | add | fabric | 0       |
+|    y_263_fu_24931_p2                                                     |     |        | y_263        | sub | fabric | 0       |
+|    y_265_fu_25013_p2                                                     |     |        | y_265        | sub | fabric | 0       |
+|    add_ln58_128_fu_25045_p2                                              |     |        | add_ln58_128 | add | fabric | 0       |
+|    acc_191_fu_25055_p2                                                   |     |        | acc_191      | add | fabric | 0       |
+|    y_267_fu_25080_p2                                                     |     |        | y_267        | sub | fabric | 0       |
+|    y_269_fu_25162_p2                                                     |     |        | y_269        | sub | fabric | 0       |
+|    add_ln58_130_fu_25194_p2                                              |     |        | add_ln58_130 | add | fabric | 0       |
+|    acc_192_fu_25204_p2                                                   |     |        | acc_192      | add | fabric | 0       |
+|    y_271_fu_25229_p2                                                     |     |        | y_271        | sub | fabric | 0       |
+|    y_273_fu_25311_p2                                                     |     |        | y_273        | sub | fabric | 0       |
+|    add_ln58_132_fu_25343_p2                                              |     |        | add_ln58_132 | add | fabric | 0       |
+|    acc_193_fu_25353_p2                                                   |     |        | acc_193      | add | fabric | 0       |
+|    y_275_fu_25378_p2                                                     |     |        | y_275        | sub | fabric | 0       |
+|    y_277_fu_25460_p2                                                     |     |        | y_277        | sub | fabric | 0       |
+|    add_ln58_134_fu_25492_p2                                              |     |        | add_ln58_134 | add | fabric | 0       |
+|    acc_194_fu_25502_p2                                                   |     |        | acc_194      | add | fabric | 0       |
+|    y_279_fu_25527_p2                                                     |     |        | y_279        | sub | fabric | 0       |
+|    y_281_fu_25609_p2                                                     |     |        | y_281        | sub | fabric | 0       |
+|    add_ln58_136_fu_25641_p2                                              |     |        | add_ln58_136 | add | fabric | 0       |
+|    acc_195_fu_25651_p2                                                   |     |        | acc_195      | add | fabric | 0       |
+|    y_283_fu_25676_p2                                                     |     |        | y_283        | sub | fabric | 0       |
+|    y_285_fu_25758_p2                                                     |     |        | y_285        | sub | fabric | 0       |
+|    add_ln58_138_fu_25790_p2                                              |     |        | add_ln58_138 | add | fabric | 0       |
+|    acc_196_fu_25800_p2                                                   |     |        | acc_196      | add | fabric | 0       |
+|    y_287_fu_25825_p2                                                     |     |        | y_287        | sub | fabric | 0       |
+|    y_289_fu_25907_p2                                                     |     |        | y_289        | sub | fabric | 0       |
+|    add_ln58_140_fu_25939_p2                                              |     |        | add_ln58_140 | add | fabric | 0       |
+|    acc_197_fu_25949_p2                                                   |     |        | acc_197      | add | fabric | 0       |
+|    y_291_fu_25974_p2                                                     |     |        | y_291        | sub | fabric | 0       |
+|    y_293_fu_26056_p2                                                     |     |        | y_293        | sub | fabric | 0       |
+|    add_ln58_142_fu_26088_p2                                              |     |        | add_ln58_142 | add | fabric | 0       |
+|    acc_198_fu_26098_p2                                                   |     |        | acc_198      | add | fabric | 0       |
+|    y_295_fu_26123_p2                                                     |     |        | y_295        | sub | fabric | 0       |
+|    y_297_fu_26205_p2                                                     |     |        | y_297        | sub | fabric | 0       |
+|    add_ln58_144_fu_26237_p2                                              |     |        | add_ln58_144 | add | fabric | 0       |
+|    acc_199_fu_26247_p2                                                   |     |        | acc_199      | add | fabric | 0       |
+|    y_299_fu_26272_p2                                                     |     |        | y_299        | sub | fabric | 0       |
+|    y_301_fu_26354_p2                                                     |     |        | y_301        | sub | fabric | 0       |
+|    add_ln58_146_fu_26386_p2                                              |     |        | add_ln58_146 | add | fabric | 0       |
+|    acc_200_fu_26396_p2                                                   |     |        | acc_200      | add | fabric | 0       |
+|    y_303_fu_26421_p2                                                     |     |        | y_303        | sub | fabric | 0       |
+|    y_305_fu_26503_p2                                                     |     |        | y_305        | sub | fabric | 0       |
+|    add_ln58_148_fu_26535_p2                                              |     |        | add_ln58_148 | add | fabric | 0       |
+|    acc_201_fu_26545_p2                                                   |     |        | acc_201      | add | fabric | 0       |
+|    y_307_fu_26570_p2                                                     |     |        | y_307        | sub | fabric | 0       |
+|    y_309_fu_26652_p2                                                     |     |        | y_309        | sub | fabric | 0       |
+|    add_ln58_150_fu_26684_p2                                              |     |        | add_ln58_150 | add | fabric | 0       |
+|    acc_202_fu_26694_p2                                                   |     |        | acc_202      | add | fabric | 0       |
+|    y_311_fu_26719_p2                                                     |     |        | y_311        | sub | fabric | 0       |
+|    y_313_fu_26801_p2                                                     |     |        | y_313        | sub | fabric | 0       |
+|    add_ln58_152_fu_26833_p2                                              |     |        | add_ln58_152 | add | fabric | 0       |
+|    acc_203_fu_26843_p2                                                   |     |        | acc_203      | add | fabric | 0       |
+|    y_315_fu_26868_p2                                                     |     |        | y_315        | sub | fabric | 0       |
+|    y_317_fu_26950_p2                                                     |     |        | y_317        | sub | fabric | 0       |
+|    add_ln58_154_fu_26982_p2                                              |     |        | add_ln58_154 | add | fabric | 0       |
+|    acc_204_fu_26992_p2                                                   |     |        | acc_204      | add | fabric | 0       |
+|    y_319_fu_27017_p2                                                     |     |        | y_319        | sub | fabric | 0       |
+|    y_321_fu_27099_p2                                                     |     |        | y_321        | sub | fabric | 0       |
+|    add_ln58_156_fu_27131_p2                                              |     |        | add_ln58_156 | add | fabric | 0       |
+|    acc_205_fu_27141_p2                                                   |     |        | acc_205      | add | fabric | 0       |
+|    y_323_fu_27166_p2                                                     |     |        | y_323        | sub | fabric | 0       |
+|    y_325_fu_27248_p2                                                     |     |        | y_325        | sub | fabric | 0       |
+|    add_ln58_158_fu_27280_p2                                              |     |        | add_ln58_158 | add | fabric | 0       |
+|    acc_206_fu_27290_p2                                                   |     |        | acc_206      | add | fabric | 0       |
+|    y_327_fu_27315_p2                                                     |     |        | y_327        | sub | fabric | 0       |
+|    y_329_fu_27397_p2                                                     |     |        | y_329        | sub | fabric | 0       |
+|    add_ln58_160_fu_27429_p2                                              |     |        | add_ln58_160 | add | fabric | 0       |
+|    acc_207_fu_27439_p2                                                   |     |        | acc_207      | add | fabric | 0       |
+|    y_331_fu_27464_p2                                                     |     |        | y_331        | sub | fabric | 0       |
+|    y_333_fu_27546_p2                                                     |     |        | y_333        | sub | fabric | 0       |
+|    add_ln58_162_fu_27578_p2                                              |     |        | add_ln58_162 | add | fabric | 0       |
+|    acc_208_fu_27588_p2                                                   |     |        | acc_208      | add | fabric | 0       |
+|    y_335_fu_27613_p2                                                     |     |        | y_335        | sub | fabric | 0       |
+|    y_337_fu_27695_p2                                                     |     |        | y_337        | sub | fabric | 0       |
+|    add_ln58_164_fu_27727_p2                                              |     |        | add_ln58_164 | add | fabric | 0       |
+|    acc_209_fu_27737_p2                                                   |     |        | acc_209      | add | fabric | 0       |
+|    y_339_fu_27762_p2                                                     |     |        | y_339        | sub | fabric | 0       |
+|    y_341_fu_27844_p2                                                     |     |        | y_341        | sub | fabric | 0       |
+|    add_ln58_166_fu_27876_p2                                              |     |        | add_ln58_166 | add | fabric | 0       |
+|    acc_210_fu_27886_p2                                                   |     |        | acc_210      | add | fabric | 0       |
+|    y_343_fu_27911_p2                                                     |     |        | y_343        | sub | fabric | 0       |
+|    y_345_fu_27993_p2                                                     |     |        | y_345        | sub | fabric | 0       |
+|    add_ln58_168_fu_28025_p2                                              |     |        | add_ln58_168 | add | fabric | 0       |
+|    acc_211_fu_28035_p2                                                   |     |        | acc_211      | add | fabric | 0       |
+|    y_347_fu_28060_p2                                                     |     |        | y_347        | sub | fabric | 0       |
+|    y_349_fu_28142_p2                                                     |     |        | y_349        | sub | fabric | 0       |
+|    add_ln58_170_fu_28174_p2                                              |     |        | add_ln58_170 | add | fabric | 0       |
+|    acc_212_fu_28184_p2                                                   |     |        | acc_212      | add | fabric | 0       |
+|    y_351_fu_28209_p2                                                     |     |        | y_351        | sub | fabric | 0       |
+|    y_353_fu_28291_p2                                                     |     |        | y_353        | sub | fabric | 0       |
+|    add_ln58_172_fu_28323_p2                                              |     |        | add_ln58_172 | add | fabric | 0       |
+|    acc_213_fu_28333_p2                                                   |     |        | acc_213      | add | fabric | 0       |
+|    y_355_fu_28358_p2                                                     |     |        | y_355        | sub | fabric | 0       |
+|    y_357_fu_28440_p2                                                     |     |        | y_357        | sub | fabric | 0       |
+|    add_ln58_174_fu_28472_p2                                              |     |        | add_ln58_174 | add | fabric | 0       |
+|    acc_214_fu_28482_p2                                                   |     |        | acc_214      | add | fabric | 0       |
+|    y_359_fu_28507_p2                                                     |     |        | y_359        | sub | fabric | 0       |
+|    y_361_fu_28589_p2                                                     |     |        | y_361        | sub | fabric | 0       |
+|    add_ln58_176_fu_28621_p2                                              |     |        | add_ln58_176 | add | fabric | 0       |
+|    acc_215_fu_28631_p2                                                   |     |        | acc_215      | add | fabric | 0       |
+|    y_363_fu_28656_p2                                                     |     |        | y_363        | sub | fabric | 0       |
+|    y_365_fu_28738_p2                                                     |     |        | y_365        | sub | fabric | 0       |
+|    add_ln58_178_fu_28770_p2                                              |     |        | add_ln58_178 | add | fabric | 0       |
+|    acc_216_fu_28780_p2                                                   |     |        | acc_216      | add | fabric | 0       |
+|    y_367_fu_28805_p2                                                     |     |        | y_367        | sub | fabric | 0       |
+|    y_369_fu_28887_p2                                                     |     |        | y_369        | sub | fabric | 0       |
+|    add_ln58_180_fu_28919_p2                                              |     |        | add_ln58_180 | add | fabric | 0       |
+|    acc_217_fu_28929_p2                                                   |     |        | acc_217      | add | fabric | 0       |
+|    y_371_fu_28954_p2                                                     |     |        | y_371        | sub | fabric | 0       |
+|    y_373_fu_29036_p2                                                     |     |        | y_373        | sub | fabric | 0       |
+|    add_ln58_182_fu_29068_p2                                              |     |        | add_ln58_182 | add | fabric | 0       |
+|    acc_218_fu_29078_p2                                                   |     |        | acc_218      | add | fabric | 0       |
+|    y_375_fu_29103_p2                                                     |     |        | y_375        | sub | fabric | 0       |
+|    y_377_fu_29185_p2                                                     |     |        | y_377        | sub | fabric | 0       |
+|    add_ln58_184_fu_29217_p2                                              |     |        | add_ln58_184 | add | fabric | 0       |
+|    acc_219_fu_29227_p2                                                   |     |        | acc_219      | add | fabric | 0       |
+|    y_379_fu_29252_p2                                                     |     |        | y_379        | sub | fabric | 0       |
+|    y_381_fu_29334_p2                                                     |     |        | y_381        | sub | fabric | 0       |
+|    add_ln58_186_fu_29366_p2                                              |     |        | add_ln58_186 | add | fabric | 0       |
+|    acc_220_fu_29376_p2                                                   |     |        | acc_220      | add | fabric | 0       |
+|    y_383_fu_29401_p2                                                     |     |        | y_383        | sub | fabric | 0       |
+|    y_385_fu_29483_p2                                                     |     |        | y_385        | sub | fabric | 0       |
+|    add_ln58_188_fu_29515_p2                                              |     |        | add_ln58_188 | add | fabric | 0       |
+|    acc_221_fu_29525_p2                                                   |     |        | acc_221      | add | fabric | 0       |
+|    y_387_fu_29550_p2                                                     |     |        | y_387        | sub | fabric | 0       |
+|    y_389_fu_29632_p2                                                     |     |        | y_389        | sub | fabric | 0       |
+|    add_ln58_190_fu_29664_p2                                              |     |        | add_ln58_190 | add | fabric | 0       |
+|    acc_222_fu_29674_p2                                                   |     |        | acc_222      | add | fabric | 0       |
+|    y_391_fu_29699_p2                                                     |     |        | y_391        | sub | fabric | 0       |
+|    y_393_fu_29781_p2                                                     |     |        | y_393        | sub | fabric | 0       |
+|    add_ln58_192_fu_29813_p2                                              |     |        | add_ln58_192 | add | fabric | 0       |
+|    acc_223_fu_29823_p2                                                   |     |        | acc_223      | add | fabric | 0       |
+|    y_395_fu_29848_p2                                                     |     |        | y_395        | sub | fabric | 0       |
+|    y_397_fu_29930_p2                                                     |     |        | y_397        | sub | fabric | 0       |
+|    add_ln58_194_fu_29962_p2                                              |     |        | add_ln58_194 | add | fabric | 0       |
+|    acc_224_fu_29972_p2                                                   |     |        | acc_224      | add | fabric | 0       |
+|    y_399_fu_29997_p2                                                     |     |        | y_399        | sub | fabric | 0       |
+|    y_401_fu_30079_p2                                                     |     |        | y_401        | sub | fabric | 0       |
+|    add_ln58_196_fu_30111_p2                                              |     |        | add_ln58_196 | add | fabric | 0       |
+|    acc_225_fu_30121_p2                                                   |     |        | acc_225      | add | fabric | 0       |
+|    y_403_fu_30146_p2                                                     |     |        | y_403        | sub | fabric | 0       |
+|    y_405_fu_30228_p2                                                     |     |        | y_405        | sub | fabric | 0       |
+|    add_ln58_198_fu_30260_p2                                              |     |        | add_ln58_198 | add | fabric | 0       |
+|    acc_226_fu_30270_p2                                                   |     |        | acc_226      | add | fabric | 0       |
+|    y_407_fu_30295_p2                                                     |     |        | y_407        | sub | fabric | 0       |
+|    y_409_fu_30377_p2                                                     |     |        | y_409        | sub | fabric | 0       |
+|    add_ln58_200_fu_30409_p2                                              |     |        | add_ln58_200 | add | fabric | 0       |
+|    acc_227_fu_30419_p2                                                   |     |        | acc_227      | add | fabric | 0       |
+|    y_411_fu_30444_p2                                                     |     |        | y_411        | sub | fabric | 0       |
+|    y_413_fu_30526_p2                                                     |     |        | y_413        | sub | fabric | 0       |
+|    add_ln58_202_fu_30558_p2                                              |     |        | add_ln58_202 | add | fabric | 0       |
+|    acc_228_fu_30568_p2                                                   |     |        | acc_228      | add | fabric | 0       |
+|    y_415_fu_30593_p2                                                     |     |        | y_415        | sub | fabric | 0       |
+|    y_417_fu_30675_p2                                                     |     |        | y_417        | sub | fabric | 0       |
+|    add_ln58_204_fu_30707_p2                                              |     |        | add_ln58_204 | add | fabric | 0       |
+|    acc_229_fu_30717_p2                                                   |     |        | acc_229      | add | fabric | 0       |
+|    y_419_fu_30742_p2                                                     |     |        | y_419        | sub | fabric | 0       |
+|    y_421_fu_30824_p2                                                     |     |        | y_421        | sub | fabric | 0       |
+|    add_ln58_206_fu_30856_p2                                              |     |        | add_ln58_206 | add | fabric | 0       |
+|    acc_230_fu_30866_p2                                                   |     |        | acc_230      | add | fabric | 0       |
+|    y_423_fu_30891_p2                                                     |     |        | y_423        | sub | fabric | 0       |
+|    y_425_fu_30973_p2                                                     |     |        | y_425        | sub | fabric | 0       |
+|    add_ln58_208_fu_31005_p2                                              |     |        | add_ln58_208 | add | fabric | 0       |
+|    acc_231_fu_31015_p2                                                   |     |        | acc_231      | add | fabric | 0       |
+|    y_427_fu_31040_p2                                                     |     |        | y_427        | sub | fabric | 0       |
+|    y_429_fu_31122_p2                                                     |     |        | y_429        | sub | fabric | 0       |
+|    add_ln58_210_fu_31154_p2                                              |     |        | add_ln58_210 | add | fabric | 0       |
+|    acc_232_fu_31164_p2                                                   |     |        | acc_232      | add | fabric | 0       |
+|    y_431_fu_31189_p2                                                     |     |        | y_431        | sub | fabric | 0       |
+|    y_433_fu_31271_p2                                                     |     |        | y_433        | sub | fabric | 0       |
+|    add_ln58_212_fu_31303_p2                                              |     |        | add_ln58_212 | add | fabric | 0       |
+|    acc_233_fu_31313_p2                                                   |     |        | acc_233      | add | fabric | 0       |
+|    y_435_fu_31338_p2                                                     |     |        | y_435        | sub | fabric | 0       |
+|    y_437_fu_31420_p2                                                     |     |        | y_437        | sub | fabric | 0       |
+|    add_ln58_214_fu_31452_p2                                              |     |        | add_ln58_214 | add | fabric | 0       |
+|    acc_234_fu_31462_p2                                                   |     |        | acc_234      | add | fabric | 0       |
+|    y_439_fu_31487_p2                                                     |     |        | y_439        | sub | fabric | 0       |
+|    y_441_fu_31569_p2                                                     |     |        | y_441        | sub | fabric | 0       |
+|    add_ln58_216_fu_31601_p2                                              |     |        | add_ln58_216 | add | fabric | 0       |
+|    acc_235_fu_31611_p2                                                   |     |        | acc_235      | add | fabric | 0       |
+|    y_443_fu_31636_p2                                                     |     |        | y_443        | sub | fabric | 0       |
+|    y_445_fu_31718_p2                                                     |     |        | y_445        | sub | fabric | 0       |
+|    add_ln58_218_fu_31750_p2                                              |     |        | add_ln58_218 | add | fabric | 0       |
+|    acc_236_fu_31760_p2                                                   |     |        | acc_236      | add | fabric | 0       |
+|    y_447_fu_31785_p2                                                     |     |        | y_447        | sub | fabric | 0       |
+|    y_449_fu_31867_p2                                                     |     |        | y_449        | sub | fabric | 0       |
+|    add_ln58_220_fu_31899_p2                                              |     |        | add_ln58_220 | add | fabric | 0       |
+|    acc_237_fu_31909_p2                                                   |     |        | acc_237      | add | fabric | 0       |
+|    y_451_fu_31934_p2                                                     |     |        | y_451        | sub | fabric | 0       |
+|    y_453_fu_32016_p2                                                     |     |        | y_453        | sub | fabric | 0       |
+|    add_ln58_222_fu_32048_p2                                              |     |        | add_ln58_222 | add | fabric | 0       |
+|    acc_238_fu_32058_p2                                                   |     |        | acc_238      | add | fabric | 0       |
+|    y_455_fu_32083_p2                                                     |     |        | y_455        | sub | fabric | 0       |
+|    y_457_fu_32165_p2                                                     |     |        | y_457        | sub | fabric | 0       |
+|    add_ln58_224_fu_32197_p2                                              |     |        | add_ln58_224 | add | fabric | 0       |
+|    acc_239_fu_32207_p2                                                   |     |        | acc_239      | add | fabric | 0       |
+|    y_459_fu_32232_p2                                                     |     |        | y_459        | sub | fabric | 0       |
+|    y_461_fu_32314_p2                                                     |     |        | y_461        | sub | fabric | 0       |
+|    add_ln58_226_fu_32346_p2                                              |     |        | add_ln58_226 | add | fabric | 0       |
+|    acc_240_fu_32356_p2                                                   |     |        | acc_240      | add | fabric | 0       |
+|    y_463_fu_32381_p2                                                     |     |        | y_463        | sub | fabric | 0       |
+|    y_465_fu_32463_p2                                                     |     |        | y_465        | sub | fabric | 0       |
+|    add_ln58_228_fu_32495_p2                                              |     |        | add_ln58_228 | add | fabric | 0       |
+|    acc_241_fu_32505_p2                                                   |     |        | acc_241      | add | fabric | 0       |
+|    y_467_fu_32530_p2                                                     |     |        | y_467        | sub | fabric | 0       |
+|    y_469_fu_32612_p2                                                     |     |        | y_469        | sub | fabric | 0       |
+|    add_ln58_230_fu_32644_p2                                              |     |        | add_ln58_230 | add | fabric | 0       |
+|    acc_242_fu_32654_p2                                                   |     |        | acc_242      | add | fabric | 0       |
+|    y_471_fu_32679_p2                                                     |     |        | y_471        | sub | fabric | 0       |
+|    y_473_fu_32761_p2                                                     |     |        | y_473        | sub | fabric | 0       |
+|    add_ln58_232_fu_32793_p2                                              |     |        | add_ln58_232 | add | fabric | 0       |
+|    acc_243_fu_32803_p2                                                   |     |        | acc_243      | add | fabric | 0       |
+|    y_475_fu_32828_p2                                                     |     |        | y_475        | sub | fabric | 0       |
+|    y_477_fu_32910_p2                                                     |     |        | y_477        | sub | fabric | 0       |
+|    add_ln58_234_fu_32942_p2                                              |     |        | add_ln58_234 | add | fabric | 0       |
+|    acc_244_fu_32952_p2                                                   |     |        | acc_244      | add | fabric | 0       |
+|    y_479_fu_32977_p2                                                     |     |        | y_479        | sub | fabric | 0       |
+|    y_481_fu_33059_p2                                                     |     |        | y_481        | sub | fabric | 0       |
+|    add_ln58_236_fu_33091_p2                                              |     |        | add_ln58_236 | add | fabric | 0       |
+|    acc_245_fu_33101_p2                                                   |     |        | acc_245      | add | fabric | 0       |
+|    y_483_fu_33126_p2                                                     |     |        | y_483        | sub | fabric | 0       |
+|    y_485_fu_33208_p2                                                     |     |        | y_485        | sub | fabric | 0       |
+|    add_ln58_238_fu_33240_p2                                              |     |        | add_ln58_238 | add | fabric | 0       |
+|    acc_246_fu_33250_p2                                                   |     |        | acc_246      | add | fabric | 0       |
+|    y_487_fu_33275_p2                                                     |     |        | y_487        | sub | fabric | 0       |
+|    y_489_fu_33357_p2                                                     |     |        | y_489        | sub | fabric | 0       |
+|    add_ln58_240_fu_33389_p2                                              |     |        | add_ln58_240 | add | fabric | 0       |
+|    acc_247_fu_33399_p2                                                   |     |        | acc_247      | add | fabric | 0       |
+|    y_491_fu_33424_p2                                                     |     |        | y_491        | sub | fabric | 0       |
+|    y_493_fu_33506_p2                                                     |     |        | y_493        | sub | fabric | 0       |
+|    add_ln58_242_fu_33538_p2                                              |     |        | add_ln58_242 | add | fabric | 0       |
+|    acc_248_fu_33548_p2                                                   |     |        | acc_248      | add | fabric | 0       |
+|    y_495_fu_33573_p2                                                     |     |        | y_495        | sub | fabric | 0       |
+|    y_497_fu_33655_p2                                                     |     |        | y_497        | sub | fabric | 0       |
+|    add_ln58_244_fu_33687_p2                                              |     |        | add_ln58_244 | add | fabric | 0       |
+|    acc_249_fu_33697_p2                                                   |     |        | acc_249      | add | fabric | 0       |
+|    y_499_fu_33722_p2                                                     |     |        | y_499        | sub | fabric | 0       |
+|    y_501_fu_33804_p2                                                     |     |        | y_501        | sub | fabric | 0       |
+|    add_ln58_246_fu_33836_p2                                              |     |        | add_ln58_246 | add | fabric | 0       |
+|    acc_250_fu_33846_p2                                                   |     |        | acc_250      | add | fabric | 0       |
+|    y_503_fu_33871_p2                                                     |     |        | y_503        | sub | fabric | 0       |
+|    y_505_fu_33953_p2                                                     |     |        | y_505        | sub | fabric | 0       |
+|    add_ln58_248_fu_33985_p2                                              |     |        | add_ln58_248 | add | fabric | 0       |
+|    acc_251_fu_33995_p2                                                   |     |        | acc_251      | add | fabric | 0       |
+|    y_507_fu_34020_p2                                                     |     |        | y_507        | sub | fabric | 0       |
+|    y_509_fu_34102_p2                                                     |     |        | y_509        | sub | fabric | 0       |
+|    add_ln58_250_fu_34134_p2                                              |     |        | add_ln58_250 | add | fabric | 0       |
+|    acc_252_fu_34144_p2                                                   |     |        | acc_252      | add | fabric | 0       |
+|    y_511_fu_34169_p2                                                     |     |        | y_511        | sub | fabric | 0       |
+|    y_513_fu_34251_p2                                                     |     |        | y_513        | sub | fabric | 0       |
+|    add_ln58_252_fu_34283_p2                                              |     |        | add_ln58_252 | add | fabric | 0       |
+|    acc_253_fu_34293_p2                                                   |     |        | acc_253      | add | fabric | 0       |
+|    y_515_fu_34318_p2                                                     |     |        | y_515        | sub | fabric | 0       |
+|    y_517_fu_34400_p2                                                     |     |        | y_517        | sub | fabric | 0       |
+|    add_ln58_254_fu_34432_p2                                              |     |        | add_ln58_254 | add | fabric | 0       |
+|    acc_254_fu_34442_p2                                                   |     |        | acc_254      | add | fabric | 0       |
+|    w_index_fu_3751_p2                                                    |     |        | w_index      | add | fabric | 0       |
+|  + dense_resource_rf_gt_nin_rem0_ap_fixed_ap_fixed_40_20_5_3_0_config6_s | 0   |        |              |     |        |         |
+|    y_521_fu_5795_p2                                                      |     |        | y_521        | sub | fabric | 0       |
+|    add_ln144_fu_5858_p2                                                  |     |        | add_ln144    | add | fabric | 0       |
+|    y_523_fu_6002_p2                                                      |     |        | y_523        | sub | fabric | 0       |
+|    add_ln144_1_fu_6065_p2                                                |     |        | add_ln144_1  | add | fabric | 0       |
+|    in_index_1_fu_5754_p2                                                 |     |        | in_index_1   | add | fabric | 0       |
+|    w_index_fu_5072_p2                                                    |     |        | w_index      | add | fabric | 0       |
++--------------------------------------------------------------------------+-----+--------+--------------+-----+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++--------------------------------------------------------------------------+--------------+------------+------+------+--------+----------------+------+---------+------------------+
+| Name                                                                     | Usage        | Type       | BRAM | URAM | Pragma | Variable       | Impl | Latency | Bitwidth, Depth, |
+|                                                                          |              |            |      |      |        |                |      |         | Banks            |
++--------------------------------------------------------------------------+--------------+------------+------+------+--------+----------------+------+---------+------------------+
+| + myproject                                                              |              |            | 44   | 0    |        |                |      |         |                  |
+|   layer3_out_U                                                           | fifo channel | task level |      |      |        | layer3_out     | srl  | 0       | 43, 2, 1         |
+|   layer3_out_1_U                                                         | fifo channel | task level |      |      |        | layer3_out_1   | srl  | 0       | 43, 2, 1         |
+|   layer3_out_2_U                                                         | fifo channel | task level |      |      |        | layer3_out_2   | srl  | 0       | 43, 2, 1         |
+|   layer3_out_3_U                                                         | fifo channel | task level |      |      |        | layer3_out_3   | srl  | 0       | 43, 2, 1         |
+|   layer3_out_4_U                                                         | fifo channel | task level |      |      |        | layer3_out_4   | srl  | 0       | 43, 2, 1         |
+|   layer3_out_5_U                                                         | fifo channel | task level |      |      |        | layer3_out_5   | srl  | 0       | 43, 2, 1         |
+|   layer3_out_6_U                                                         | fifo channel | task level |      |      |        | layer3_out_6   | srl  | 0       | 43, 2, 1         |
+|   layer3_out_7_U                                                         | fifo channel | task level |      |      |        | layer3_out_7   | srl  | 0       | 43, 2, 1         |
+|   layer3_out_8_U                                                         | fifo channel | task level |      |      |        | layer3_out_8   | srl  | 0       | 43, 2, 1         |
+|   layer3_out_9_U                                                         | fifo channel | task level |      |      |        | layer3_out_9   | srl  | 0       | 43, 2, 1         |
+|   layer3_out_10_U                                                        | fifo channel | task level |      |      |        | layer3_out_10  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_11_U                                                        | fifo channel | task level |      |      |        | layer3_out_11  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_12_U                                                        | fifo channel | task level |      |      |        | layer3_out_12  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_13_U                                                        | fifo channel | task level |      |      |        | layer3_out_13  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_14_U                                                        | fifo channel | task level |      |      |        | layer3_out_14  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_15_U                                                        | fifo channel | task level |      |      |        | layer3_out_15  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_16_U                                                        | fifo channel | task level |      |      |        | layer3_out_16  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_17_U                                                        | fifo channel | task level |      |      |        | layer3_out_17  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_18_U                                                        | fifo channel | task level |      |      |        | layer3_out_18  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_19_U                                                        | fifo channel | task level |      |      |        | layer3_out_19  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_20_U                                                        | fifo channel | task level |      |      |        | layer3_out_20  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_21_U                                                        | fifo channel | task level |      |      |        | layer3_out_21  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_22_U                                                        | fifo channel | task level |      |      |        | layer3_out_22  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_23_U                                                        | fifo channel | task level |      |      |        | layer3_out_23  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_24_U                                                        | fifo channel | task level |      |      |        | layer3_out_24  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_25_U                                                        | fifo channel | task level |      |      |        | layer3_out_25  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_26_U                                                        | fifo channel | task level |      |      |        | layer3_out_26  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_27_U                                                        | fifo channel | task level |      |      |        | layer3_out_27  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_28_U                                                        | fifo channel | task level |      |      |        | layer3_out_28  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_29_U                                                        | fifo channel | task level |      |      |        | layer3_out_29  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_30_U                                                        | fifo channel | task level |      |      |        | layer3_out_30  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_31_U                                                        | fifo channel | task level |      |      |        | layer3_out_31  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_32_U                                                        | fifo channel | task level |      |      |        | layer3_out_32  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_33_U                                                        | fifo channel | task level |      |      |        | layer3_out_33  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_34_U                                                        | fifo channel | task level |      |      |        | layer3_out_34  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_35_U                                                        | fifo channel | task level |      |      |        | layer3_out_35  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_36_U                                                        | fifo channel | task level |      |      |        | layer3_out_36  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_37_U                                                        | fifo channel | task level |      |      |        | layer3_out_37  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_38_U                                                        | fifo channel | task level |      |      |        | layer3_out_38  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_39_U                                                        | fifo channel | task level |      |      |        | layer3_out_39  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_40_U                                                        | fifo channel | task level |      |      |        | layer3_out_40  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_41_U                                                        | fifo channel | task level |      |      |        | layer3_out_41  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_42_U                                                        | fifo channel | task level |      |      |        | layer3_out_42  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_43_U                                                        | fifo channel | task level |      |      |        | layer3_out_43  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_44_U                                                        | fifo channel | task level |      |      |        | layer3_out_44  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_45_U                                                        | fifo channel | task level |      |      |        | layer3_out_45  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_46_U                                                        | fifo channel | task level |      |      |        | layer3_out_46  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_47_U                                                        | fifo channel | task level |      |      |        | layer3_out_47  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_48_U                                                        | fifo channel | task level |      |      |        | layer3_out_48  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_49_U                                                        | fifo channel | task level |      |      |        | layer3_out_49  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_50_U                                                        | fifo channel | task level |      |      |        | layer3_out_50  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_51_U                                                        | fifo channel | task level |      |      |        | layer3_out_51  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_52_U                                                        | fifo channel | task level |      |      |        | layer3_out_52  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_53_U                                                        | fifo channel | task level |      |      |        | layer3_out_53  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_54_U                                                        | fifo channel | task level |      |      |        | layer3_out_54  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_55_U                                                        | fifo channel | task level |      |      |        | layer3_out_55  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_56_U                                                        | fifo channel | task level |      |      |        | layer3_out_56  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_57_U                                                        | fifo channel | task level |      |      |        | layer3_out_57  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_58_U                                                        | fifo channel | task level |      |      |        | layer3_out_58  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_59_U                                                        | fifo channel | task level |      |      |        | layer3_out_59  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_60_U                                                        | fifo channel | task level |      |      |        | layer3_out_60  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_61_U                                                        | fifo channel | task level |      |      |        | layer3_out_61  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_62_U                                                        | fifo channel | task level |      |      |        | layer3_out_62  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_63_U                                                        | fifo channel | task level |      |      |        | layer3_out_63  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_64_U                                                        | fifo channel | task level |      |      |        | layer3_out_64  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_65_U                                                        | fifo channel | task level |      |      |        | layer3_out_65  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_66_U                                                        | fifo channel | task level |      |      |        | layer3_out_66  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_67_U                                                        | fifo channel | task level |      |      |        | layer3_out_67  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_68_U                                                        | fifo channel | task level |      |      |        | layer3_out_68  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_69_U                                                        | fifo channel | task level |      |      |        | layer3_out_69  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_70_U                                                        | fifo channel | task level |      |      |        | layer3_out_70  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_71_U                                                        | fifo channel | task level |      |      |        | layer3_out_71  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_72_U                                                        | fifo channel | task level |      |      |        | layer3_out_72  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_73_U                                                        | fifo channel | task level |      |      |        | layer3_out_73  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_74_U                                                        | fifo channel | task level |      |      |        | layer3_out_74  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_75_U                                                        | fifo channel | task level |      |      |        | layer3_out_75  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_76_U                                                        | fifo channel | task level |      |      |        | layer3_out_76  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_77_U                                                        | fifo channel | task level |      |      |        | layer3_out_77  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_78_U                                                        | fifo channel | task level |      |      |        | layer3_out_78  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_79_U                                                        | fifo channel | task level |      |      |        | layer3_out_79  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_80_U                                                        | fifo channel | task level |      |      |        | layer3_out_80  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_81_U                                                        | fifo channel | task level |      |      |        | layer3_out_81  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_82_U                                                        | fifo channel | task level |      |      |        | layer3_out_82  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_83_U                                                        | fifo channel | task level |      |      |        | layer3_out_83  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_84_U                                                        | fifo channel | task level |      |      |        | layer3_out_84  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_85_U                                                        | fifo channel | task level |      |      |        | layer3_out_85  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_86_U                                                        | fifo channel | task level |      |      |        | layer3_out_86  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_87_U                                                        | fifo channel | task level |      |      |        | layer3_out_87  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_88_U                                                        | fifo channel | task level |      |      |        | layer3_out_88  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_89_U                                                        | fifo channel | task level |      |      |        | layer3_out_89  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_90_U                                                        | fifo channel | task level |      |      |        | layer3_out_90  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_91_U                                                        | fifo channel | task level |      |      |        | layer3_out_91  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_92_U                                                        | fifo channel | task level |      |      |        | layer3_out_92  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_93_U                                                        | fifo channel | task level |      |      |        | layer3_out_93  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_94_U                                                        | fifo channel | task level |      |      |        | layer3_out_94  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_95_U                                                        | fifo channel | task level |      |      |        | layer3_out_95  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_96_U                                                        | fifo channel | task level |      |      |        | layer3_out_96  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_97_U                                                        | fifo channel | task level |      |      |        | layer3_out_97  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_98_U                                                        | fifo channel | task level |      |      |        | layer3_out_98  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_99_U                                                        | fifo channel | task level |      |      |        | layer3_out_99  | srl  | 0       | 43, 2, 1         |
+|   layer3_out_100_U                                                       | fifo channel | task level |      |      |        | layer3_out_100 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_101_U                                                       | fifo channel | task level |      |      |        | layer3_out_101 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_102_U                                                       | fifo channel | task level |      |      |        | layer3_out_102 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_103_U                                                       | fifo channel | task level |      |      |        | layer3_out_103 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_104_U                                                       | fifo channel | task level |      |      |        | layer3_out_104 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_105_U                                                       | fifo channel | task level |      |      |        | layer3_out_105 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_106_U                                                       | fifo channel | task level |      |      |        | layer3_out_106 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_107_U                                                       | fifo channel | task level |      |      |        | layer3_out_107 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_108_U                                                       | fifo channel | task level |      |      |        | layer3_out_108 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_109_U                                                       | fifo channel | task level |      |      |        | layer3_out_109 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_110_U                                                       | fifo channel | task level |      |      |        | layer3_out_110 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_111_U                                                       | fifo channel | task level |      |      |        | layer3_out_111 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_112_U                                                       | fifo channel | task level |      |      |        | layer3_out_112 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_113_U                                                       | fifo channel | task level |      |      |        | layer3_out_113 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_114_U                                                       | fifo channel | task level |      |      |        | layer3_out_114 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_115_U                                                       | fifo channel | task level |      |      |        | layer3_out_115 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_116_U                                                       | fifo channel | task level |      |      |        | layer3_out_116 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_117_U                                                       | fifo channel | task level |      |      |        | layer3_out_117 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_118_U                                                       | fifo channel | task level |      |      |        | layer3_out_118 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_119_U                                                       | fifo channel | task level |      |      |        | layer3_out_119 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_120_U                                                       | fifo channel | task level |      |      |        | layer3_out_120 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_121_U                                                       | fifo channel | task level |      |      |        | layer3_out_121 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_122_U                                                       | fifo channel | task level |      |      |        | layer3_out_122 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_123_U                                                       | fifo channel | task level |      |      |        | layer3_out_123 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_124_U                                                       | fifo channel | task level |      |      |        | layer3_out_124 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_125_U                                                       | fifo channel | task level |      |      |        | layer3_out_125 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_126_U                                                       | fifo channel | task level |      |      |        | layer3_out_126 | srl  | 0       | 43, 2, 1         |
+|   layer3_out_127_U                                                       | fifo channel | task level |      |      |        | layer3_out_127 | srl  | 0       | 43, 2, 1         |
+|   layer4_out_U                                                           | fifo channel | task level |      |      |        | layer4_out     | srl  | 0       | 16, 2, 1         |
+|   layer4_out_1_U                                                         | fifo channel | task level |      |      |        | layer4_out_1   | srl  | 0       | 16, 2, 1         |
+|   layer4_out_2_U                                                         | fifo channel | task level |      |      |        | layer4_out_2   | srl  | 0       | 16, 2, 1         |
+|   layer4_out_3_U                                                         | fifo channel | task level |      |      |        | layer4_out_3   | srl  | 0       | 16, 2, 1         |
+|   layer4_out_4_U                                                         | fifo channel | task level |      |      |        | layer4_out_4   | srl  | 0       | 16, 2, 1         |
+|   layer4_out_5_U                                                         | fifo channel | task level |      |      |        | layer4_out_5   | srl  | 0       | 16, 2, 1         |
+|   layer4_out_6_U                                                         | fifo channel | task level |      |      |        | layer4_out_6   | srl  | 0       | 16, 2, 1         |
+|   layer4_out_7_U                                                         | fifo channel | task level |      |      |        | layer4_out_7   | srl  | 0       | 16, 2, 1         |
+|   layer4_out_8_U                                                         | fifo channel | task level |      |      |        | layer4_out_8   | srl  | 0       | 16, 2, 1         |
+|   layer4_out_9_U                                                         | fifo channel | task level |      |      |        | layer4_out_9   | srl  | 0       | 16, 2, 1         |
+|   layer4_out_10_U                                                        | fifo channel | task level |      |      |        | layer4_out_10  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_11_U                                                        | fifo channel | task level |      |      |        | layer4_out_11  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_12_U                                                        | fifo channel | task level |      |      |        | layer4_out_12  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_13_U                                                        | fifo channel | task level |      |      |        | layer4_out_13  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_14_U                                                        | fifo channel | task level |      |      |        | layer4_out_14  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_15_U                                                        | fifo channel | task level |      |      |        | layer4_out_15  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_16_U                                                        | fifo channel | task level |      |      |        | layer4_out_16  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_17_U                                                        | fifo channel | task level |      |      |        | layer4_out_17  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_18_U                                                        | fifo channel | task level |      |      |        | layer4_out_18  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_19_U                                                        | fifo channel | task level |      |      |        | layer4_out_19  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_20_U                                                        | fifo channel | task level |      |      |        | layer4_out_20  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_21_U                                                        | fifo channel | task level |      |      |        | layer4_out_21  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_22_U                                                        | fifo channel | task level |      |      |        | layer4_out_22  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_23_U                                                        | fifo channel | task level |      |      |        | layer4_out_23  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_24_U                                                        | fifo channel | task level |      |      |        | layer4_out_24  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_25_U                                                        | fifo channel | task level |      |      |        | layer4_out_25  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_26_U                                                        | fifo channel | task level |      |      |        | layer4_out_26  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_27_U                                                        | fifo channel | task level |      |      |        | layer4_out_27  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_28_U                                                        | fifo channel | task level |      |      |        | layer4_out_28  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_29_U                                                        | fifo channel | task level |      |      |        | layer4_out_29  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_30_U                                                        | fifo channel | task level |      |      |        | layer4_out_30  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_31_U                                                        | fifo channel | task level |      |      |        | layer4_out_31  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_32_U                                                        | fifo channel | task level |      |      |        | layer4_out_32  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_33_U                                                        | fifo channel | task level |      |      |        | layer4_out_33  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_34_U                                                        | fifo channel | task level |      |      |        | layer4_out_34  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_35_U                                                        | fifo channel | task level |      |      |        | layer4_out_35  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_36_U                                                        | fifo channel | task level |      |      |        | layer4_out_36  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_37_U                                                        | fifo channel | task level |      |      |        | layer4_out_37  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_38_U                                                        | fifo channel | task level |      |      |        | layer4_out_38  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_39_U                                                        | fifo channel | task level |      |      |        | layer4_out_39  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_40_U                                                        | fifo channel | task level |      |      |        | layer4_out_40  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_41_U                                                        | fifo channel | task level |      |      |        | layer4_out_41  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_42_U                                                        | fifo channel | task level |      |      |        | layer4_out_42  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_43_U                                                        | fifo channel | task level |      |      |        | layer4_out_43  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_44_U                                                        | fifo channel | task level |      |      |        | layer4_out_44  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_45_U                                                        | fifo channel | task level |      |      |        | layer4_out_45  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_46_U                                                        | fifo channel | task level |      |      |        | layer4_out_46  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_47_U                                                        | fifo channel | task level |      |      |        | layer4_out_47  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_48_U                                                        | fifo channel | task level |      |      |        | layer4_out_48  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_49_U                                                        | fifo channel | task level |      |      |        | layer4_out_49  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_50_U                                                        | fifo channel | task level |      |      |        | layer4_out_50  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_51_U                                                        | fifo channel | task level |      |      |        | layer4_out_51  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_52_U                                                        | fifo channel | task level |      |      |        | layer4_out_52  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_53_U                                                        | fifo channel | task level |      |      |        | layer4_out_53  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_54_U                                                        | fifo channel | task level |      |      |        | layer4_out_54  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_55_U                                                        | fifo channel | task level |      |      |        | layer4_out_55  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_56_U                                                        | fifo channel | task level |      |      |        | layer4_out_56  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_57_U                                                        | fifo channel | task level |      |      |        | layer4_out_57  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_58_U                                                        | fifo channel | task level |      |      |        | layer4_out_58  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_59_U                                                        | fifo channel | task level |      |      |        | layer4_out_59  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_60_U                                                        | fifo channel | task level |      |      |        | layer4_out_60  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_61_U                                                        | fifo channel | task level |      |      |        | layer4_out_61  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_62_U                                                        | fifo channel | task level |      |      |        | layer4_out_62  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_63_U                                                        | fifo channel | task level |      |      |        | layer4_out_63  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_64_U                                                        | fifo channel | task level |      |      |        | layer4_out_64  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_65_U                                                        | fifo channel | task level |      |      |        | layer4_out_65  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_66_U                                                        | fifo channel | task level |      |      |        | layer4_out_66  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_67_U                                                        | fifo channel | task level |      |      |        | layer4_out_67  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_68_U                                                        | fifo channel | task level |      |      |        | layer4_out_68  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_69_U                                                        | fifo channel | task level |      |      |        | layer4_out_69  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_70_U                                                        | fifo channel | task level |      |      |        | layer4_out_70  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_71_U                                                        | fifo channel | task level |      |      |        | layer4_out_71  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_72_U                                                        | fifo channel | task level |      |      |        | layer4_out_72  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_73_U                                                        | fifo channel | task level |      |      |        | layer4_out_73  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_74_U                                                        | fifo channel | task level |      |      |        | layer4_out_74  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_75_U                                                        | fifo channel | task level |      |      |        | layer4_out_75  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_76_U                                                        | fifo channel | task level |      |      |        | layer4_out_76  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_77_U                                                        | fifo channel | task level |      |      |        | layer4_out_77  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_78_U                                                        | fifo channel | task level |      |      |        | layer4_out_78  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_79_U                                                        | fifo channel | task level |      |      |        | layer4_out_79  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_80_U                                                        | fifo channel | task level |      |      |        | layer4_out_80  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_81_U                                                        | fifo channel | task level |      |      |        | layer4_out_81  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_82_U                                                        | fifo channel | task level |      |      |        | layer4_out_82  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_83_U                                                        | fifo channel | task level |      |      |        | layer4_out_83  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_84_U                                                        | fifo channel | task level |      |      |        | layer4_out_84  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_85_U                                                        | fifo channel | task level |      |      |        | layer4_out_85  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_86_U                                                        | fifo channel | task level |      |      |        | layer4_out_86  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_87_U                                                        | fifo channel | task level |      |      |        | layer4_out_87  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_88_U                                                        | fifo channel | task level |      |      |        | layer4_out_88  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_89_U                                                        | fifo channel | task level |      |      |        | layer4_out_89  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_90_U                                                        | fifo channel | task level |      |      |        | layer4_out_90  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_91_U                                                        | fifo channel | task level |      |      |        | layer4_out_91  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_92_U                                                        | fifo channel | task level |      |      |        | layer4_out_92  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_93_U                                                        | fifo channel | task level |      |      |        | layer4_out_93  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_94_U                                                        | fifo channel | task level |      |      |        | layer4_out_94  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_95_U                                                        | fifo channel | task level |      |      |        | layer4_out_95  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_96_U                                                        | fifo channel | task level |      |      |        | layer4_out_96  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_97_U                                                        | fifo channel | task level |      |      |        | layer4_out_97  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_98_U                                                        | fifo channel | task level |      |      |        | layer4_out_98  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_99_U                                                        | fifo channel | task level |      |      |        | layer4_out_99  | srl  | 0       | 16, 2, 1         |
+|   layer4_out_100_U                                                       | fifo channel | task level |      |      |        | layer4_out_100 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_101_U                                                       | fifo channel | task level |      |      |        | layer4_out_101 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_102_U                                                       | fifo channel | task level |      |      |        | layer4_out_102 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_103_U                                                       | fifo channel | task level |      |      |        | layer4_out_103 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_104_U                                                       | fifo channel | task level |      |      |        | layer4_out_104 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_105_U                                                       | fifo channel | task level |      |      |        | layer4_out_105 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_106_U                                                       | fifo channel | task level |      |      |        | layer4_out_106 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_107_U                                                       | fifo channel | task level |      |      |        | layer4_out_107 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_108_U                                                       | fifo channel | task level |      |      |        | layer4_out_108 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_109_U                                                       | fifo channel | task level |      |      |        | layer4_out_109 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_110_U                                                       | fifo channel | task level |      |      |        | layer4_out_110 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_111_U                                                       | fifo channel | task level |      |      |        | layer4_out_111 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_112_U                                                       | fifo channel | task level |      |      |        | layer4_out_112 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_113_U                                                       | fifo channel | task level |      |      |        | layer4_out_113 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_114_U                                                       | fifo channel | task level |      |      |        | layer4_out_114 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_115_U                                                       | fifo channel | task level |      |      |        | layer4_out_115 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_116_U                                                       | fifo channel | task level |      |      |        | layer4_out_116 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_117_U                                                       | fifo channel | task level |      |      |        | layer4_out_117 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_118_U                                                       | fifo channel | task level |      |      |        | layer4_out_118 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_119_U                                                       | fifo channel | task level |      |      |        | layer4_out_119 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_120_U                                                       | fifo channel | task level |      |      |        | layer4_out_120 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_121_U                                                       | fifo channel | task level |      |      |        | layer4_out_121 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_122_U                                                       | fifo channel | task level |      |      |        | layer4_out_122 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_123_U                                                       | fifo channel | task level |      |      |        | layer4_out_123 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_124_U                                                       | fifo channel | task level |      |      |        | layer4_out_124 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_125_U                                                       | fifo channel | task level |      |      |        | layer4_out_125 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_126_U                                                       | fifo channel | task level |      |      |        | layer4_out_126 | srl  | 0       | 16, 2, 1         |
+|   layer4_out_127_U                                                       | fifo channel | task level |      |      |        | layer4_out_127 | srl  | 0       | 16, 2, 1         |
+|  + dense_resource_rf_leq_nin_ap_fixed_ap_fixed_43_23_5_3_0_config3_s     |              |            | 40   | 0    |        |                |      |         |                  |
+|    w3_nonzero_88_U                                                       | rom_np       |            | 8    |      | pragma | w3_nonzero_88  | bram | 1       | 256, 392, 1      |
+|    w3_exponent_86_U                                                      | rom_np       |            | 24   |      | pragma | w3_exponent_86 | bram | 1       | 1023, 392, 1     |
+|    w3_positive_87_U                                                      | rom_np       |            | 8    |      | pragma | w3_positive_87 | bram | 1       | 256, 392, 1      |
+|  + dense_resource_rf_gt_nin_rem0_ap_fixed_ap_fixed_40_20_5_3_0_config6_s |              |            | 4    | 0    |        |                |      |         |                  |
+|    outidx_U                                                              | rom_1p       |            | 1    |      |        | outidx         | auto | 1       | 3, 640, 1        |
+|    w6_nonzero_85_U                                                       | rom_np       |            | 1    |      | pragma | w6_nonzero_85  | bram | 1       | 2, 640, 1        |
+|    w6_exponent_83_U                                                      | rom_np       |            | 1    |      | pragma | w6_exponent_83 | bram | 1       | 7, 640, 1        |
+|    w6_positive_84_U                                                      | rom_np       |            | 1    |      | pragma | w6_positive_84 | bram | 1       | 2, 640, 1        |
++--------------------------------------------------------------------------+--------------+------------+------+------+--------+----------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Ignored Pragmas
++------------+---------------------+---------------------------------------------------------------+------------------------------------------------------------------+
+| Type       | Options             | Location                                                      | Messages                                                         |
++------------+---------------------+---------------------------------------------------------------+------------------------------------------------------------------+
+| allocation | instances = softmax | firmware/nnet_utils/nnet_activation.h:402 in softmax_multidim | unexpected pragma argument 'softmax', expects function/operation |
++------------+---------------------+---------------------------------------------------------------+------------------------------------------------------------------+
+
+* Pragmas with Warnings
++----------+-----------------------------------+-----------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| Type     | Options                           | Location                                                                                | Messages                                                                   |
++----------+-----------------------------------+-----------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| resource | variable=weights core=ROM_nP_BRAM | firmware/nnet_utils/nnet_dense_resource.h:33 in dense_resource_rf_leq_nin, weights      | 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead |
+| resource | variable=weights core=ROM_nP_BRAM | firmware/nnet_utils/nnet_dense_resource.h:107 in dense_resource_rf_gt_nin_rem0, weights | 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead |
+| resource | variable=weights core=ROM_nP_BRAM | firmware/nnet_utils/nnet_dense_resource.h:189 in dense_resource_rf_gt_nin, weights      | 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead |
++----------+-----------------------------------+-----------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+
+* Valid Pragma Syntax
++----------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+| Type                 | Options                                                               | Location                                                                                       |
++----------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+| array_reshape        | variable=input_layer complete dim=0                                   | firmware/myproject.cpp:13 in myproject, input_layer                                            |
+| array_partition      | variable=layer6_out complete dim=0                                    | firmware/myproject.cpp:14 in myproject, layer6_out                                             |
+| interface            | ap_vld port=input_layer,layer6_out                                    | firmware/myproject.cpp:15 in myproject, input_layer,layer6_out                                 |
+| dataflow             |                                                                       | firmware/myproject.cpp:16 in myproject                                                         |
+| array_partition      | variable=layer3_out complete dim=0                                    | firmware/myproject.cpp:28 in myproject, layer3_out                                             |
+| array_partition      | variable=layer4_out complete dim=0                                    | firmware/myproject.cpp:31 in myproject, layer4_out                                             |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:29 in linear                                             |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:40 in relu                                               |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:54 in relu_max                                           |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:109 in sigmoid                                           |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:176 in softmax_latency                                   |
+| array_partition      | variable=exp_res complete                                             | firmware/nnet_utils/nnet_activation.h:198 in softmax_latency, exp_res                          |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:201 in softmax_latency                                   |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:214 in softmax_latency                                   |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:221 in softmax_stable                                    |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:247 in softmax_stable                                    |
+| array_partition      | variable=exp_res complete                                             | firmware/nnet_utils/nnet_activation.h:253 in softmax_stable, exp_res                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:256 in softmax_stable                                    |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:269 in softmax_stable                                    |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:317 in softmax_legacy                                    |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:362 in softmax_argmax                                    |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:370 in softmax_argmax                                    |
+| inline               |                                                                       | firmware/nnet_utils/nnet_activation.h:382 in softmax                                           |
+| inline               |                                                                       | firmware/nnet_utils/nnet_activation.h:401 in softmax_multidim                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:406 in softmax_multidim                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:408 in softmax_multidim                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:410 in softmax_multidim                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:415 in softmax_multidim                                  |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:452 in tanh                                              |
+| function_instantiate | variable=table                                                        | firmware/nnet_utils/nnet_activation.h:481 in unary_lut, table                                  |
+| array_partition      | variable=table                                                        | firmware/nnet_utils/nnet_activation.h:482 in unary_lut, table                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation.h:485 in unary_lut                                         |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:496 in hard_sigmoid                                      |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:511 in hard_tanh                                         |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:529 in leaky_relu                                        |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:546 in thresholded_relu                                  |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:591 in softplus                                          |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:640 in softsign                                          |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:689 in elu                                               |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:748 in selu                                              |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:776 in prelu                                             |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:804 in binary_tanh                                       |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation.h:824 in ternary_tanh                                      |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:20 in linear                                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:28 in linear                                      |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:42 in relu                                        |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:50 in relu                                        |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:81 in sigmoid                                     |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:89 in sigmoid                                     |
+| array_partition      | variable=exp_res complete                                             | firmware/nnet_utils/nnet_activation_stream.h:133 in softmax_latency, exp_res                   |
+| pipeline             | II=ii                                                                 | firmware/nnet_utils/nnet_activation_stream.h:137 in softmax_latency                            |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:142 in softmax_latency                            |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:160 in softmax_latency                            |
+| allocation           | operation instances=mul limit=multiplier_limit                        | firmware/nnet_utils/nnet_activation_stream.h:161 in softmax_latency                            |
+| array_partition      | variable=data_array complete                                          | firmware/nnet_utils/nnet_activation_stream.h:193 in softmax_stable, data_array                 |
+| pipeline             | II=ii                                                                 | firmware/nnet_utils/nnet_activation_stream.h:196 in softmax_stable                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:201 in softmax_stable                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:212 in softmax_stable                             |
+| array_partition      | variable=exp_res complete                                             | firmware/nnet_utils/nnet_activation_stream.h:218 in softmax_stable, exp_res                    |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:221 in softmax_stable                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:239 in softmax_stable                             |
+| allocation           | operation instances=mul limit=multiplier_limit                        | firmware/nnet_utils/nnet_activation_stream.h:240 in softmax_stable                             |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:272 in softmax_legacy                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:276 in softmax_legacy                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:283 in softmax_legacy                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:286 in softmax_legacy                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:309 in softmax_legacy                             |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:326 in softmax_argmax                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:331 in softmax_argmax                             |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:339 in softmax_argmax                             |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:390 in tanh                                       |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:398 in tanh                                       |
+| function_instantiate | variable=table                                                        | firmware/nnet_utils/nnet_activation_stream.h:418 in unary_lut, table                           |
+| array_partition      | variable=table complete                                               | firmware/nnet_utils/nnet_activation_stream.h:419 in unary_lut, table                           |
+| pipeline             | II=CONFIG_T::reuse_factor rewind                                      | firmware/nnet_utils/nnet_activation_stream.h:423 in unary_lut                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:431 in unary_lut                                  |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:449 in hard_sigmoid                               |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:457 in hard_sigmoid                               |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:474 in hard_tanh                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:482 in hard_tanh                                  |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:503 in leaky_relu                                 |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:511 in leaky_relu                                 |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:529 in thresholded_relu                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:537 in thresholded_relu                           |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:568 in softplus                                   |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:576 in softplus                                   |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:609 in softsign                                   |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:617 in softsign                                   |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:650 in elu                                        |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:658 in elu                                        |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:698 in selu                                       |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:706 in selu                                       |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:730 in prelu                                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:738 in prelu                                      |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:756 in binary_tanh                                |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:765 in binary_tanh                                |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:784 in ternary_tanh                               |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_activation_stream.h:792 in ternary_tanh                               |
+| array_partition      | variable=data_buf complete dim=0                                      | firmware/nnet_utils/nnet_conv1d_latency.h:19 in conv_1d_latency_cl, data_buf                   |
+| array_partition      | variable=mult complete                                                | firmware/nnet_utils/nnet_conv1d_latency.h:22 in conv_1d_latency_cl, mult                       |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_conv1d_latency.h:25 in conv_1d_latency_cl, acc                        |
+| array_partition      | variable=weights complete                                             | firmware/nnet_utils/nnet_conv1d_latency.h:27 in conv_1d_latency_cl, weights                    |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_conv1d_latency.h:28 in conv_1d_latency_cl, biases                     |
+| allocation           | operation instances=mul limit=CONFIG_T::mult_config::multiplier_limit | firmware/nnet_utils/nnet_conv1d_latency.h:31 in conv_1d_latency_cl                             |
+| pipeline             | II=CONFIG_T::reuse_factor rewind                                      | firmware/nnet_utils/nnet_conv1d_latency.h:35 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:41 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:48 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:52 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:62 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:69 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:72 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:80 in conv_1d_latency_cl                             |
+| array_partition      | variable=mult complete dim=0                                          | firmware/nnet_utils/nnet_conv1d_latency.h:98 in pointwise_conv_1d_latency_cl, mult             |
+| array_partition      | variable=acc complete dim=0                                           | firmware/nnet_utils/nnet_conv1d_latency.h:99 in pointwise_conv_1d_latency_cl, acc              |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_conv1d_latency.h:102 in pointwise_conv_1d_latency_cl, weights,biases  |
+| pipeline             | II=CONFIG_T::reuse_factor                                             | firmware/nnet_utils/nnet_conv1d_latency.h:105 in pointwise_conv_1d_latency_cl                  |
+| array_partition      | variable=weights complete dim=0                                       | firmware/nnet_utils/nnet_conv1d_latency.h:106 in pointwise_conv_1d_latency_cl, weights         |
+| array_partition      | variable=biases complete dim=0                                        | firmware/nnet_utils/nnet_conv1d_latency.h:107 in pointwise_conv_1d_latency_cl, biases          |
+| allocation           | operation instances=mul limit=CONFIG_T::mult_config::multiplier_limit | firmware/nnet_utils/nnet_conv1d_latency.h:110 in pointwise_conv_1d_latency_cl                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:119 in pointwise_conv_1d_latency_cl                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:138 in pointwise_conv_1d_latency_cl                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:160 in pointwise_conv_1d_latency_cl                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense.h:44 in dense                                                   |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense.h:53 in dense                                                   |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense.h:64 in dense                                                   |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense.h:75 in dense                                                   |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_compressed.h:15 in fill_mult                                    |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_dense_compressed.h:29 in dense_compressed, acc                        |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_dense_compressed.h:30 in dense_compressed, biases                     |
+| array_reshape        | variable=weights block factor=multiplier_limit                        | firmware/nnet_utils/nnet_dense_compressed.h:31 in dense_compressed, weights                    |
+| aggregate            | variable=weights                                                      | firmware/nnet_utils/nnet_dense_compressed.h:34 in dense_compressed, weights                    |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_compressed.h:41 in dense_compressed                             |
+| pipeline             | II=1 rewind                                                           | firmware/nnet_utils/nnet_dense_compressed.h:49 in dense_compressed                             |
+| array_partition      | variable=mult complete                                                | firmware/nnet_utils/nnet_dense_compressed.h:52 in dense_compressed, mult                       |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_compressed.h:56 in dense_compressed                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_compressed.h:62 in dense_compressed                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_compressed.h:82 in dense_compressed                             |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_dense_latency.h:21 in dense_latency, weights,biases                   |
+| pipeline             | II=CONFIG_T::reuse_factor                                             | firmware/nnet_utils/nnet_dense_latency.h:26 in dense_latency                                   |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_dense_latency.h:29 in dense_latency, biases                           |
+| array_partition      | variable=mult complete                                                | firmware/nnet_utils/nnet_dense_latency.h:30 in dense_latency, mult                             |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_dense_latency.h:31 in dense_latency, acc                              |
+| allocation           | operation instances=mul limit=CONFIG_T::multiplier_limit              | firmware/nnet_utils/nnet_dense_latency.h:33 in dense_latency                                   |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_dense_resource.h:28 in dense_resource_rf_leq_nin, weights,biases      |
+| array_reshape        | variable=weights block factor=block_factor                            | firmware/nnet_utils/nnet_dense_resource.h:29 in dense_resource_rf_leq_nin, weights             |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_dense_resource.h:30 in dense_resource_rf_leq_nin, biases              |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_dense_resource.h:37 in dense_resource_rf_leq_nin, acc                 |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:41 in dense_resource_rf_leq_nin                      |
+| pipeline             | II=1 rewind                                                           | firmware/nnet_utils/nnet_dense_resource.h:47 in dense_resource_rf_leq_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:56 in dense_resource_rf_leq_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:81 in dense_resource_rf_leq_nin                      |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_dense_resource.h:102 in dense_resource_rf_gt_nin_rem0, weights,biases |
+| array_reshape        | variable=weights block factor=block_factor                            | firmware/nnet_utils/nnet_dense_resource.h:103 in dense_resource_rf_gt_nin_rem0, weights        |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_dense_resource.h:104 in dense_resource_rf_gt_nin_rem0, biases         |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_dense_resource.h:111 in dense_resource_rf_gt_nin_rem0, acc            |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:115 in dense_resource_rf_gt_nin_rem0                 |
+| pipeline             | II=1 rewind                                                           | firmware/nnet_utils/nnet_dense_resource.h:136 in dense_resource_rf_gt_nin_rem0                 |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:143 in dense_resource_rf_gt_nin_rem0                 |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:163 in dense_resource_rf_gt_nin_rem0                 |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_dense_resource.h:184 in dense_resource_rf_gt_nin, weights,biases      |
+| array_reshape        | variable=weights block factor=block_factor                            | firmware/nnet_utils/nnet_dense_resource.h:185 in dense_resource_rf_gt_nin, weights             |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_dense_resource.h:186 in dense_resource_rf_gt_nin, biases              |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_dense_resource.h:193 in dense_resource_rf_gt_nin, acc                 |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:197 in dense_resource_rf_gt_nin                      |
+| pipeline             | II=1 rewind                                                           | firmware/nnet_utils/nnet_dense_resource.h:203 in dense_resource_rf_gt_nin                      |
+| array_partition      | variable=tmpmult complete                                             | firmware/nnet_utils/nnet_dense_resource.h:205 in dense_resource_rf_gt_nin, tmpmult             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:209 in dense_resource_rf_gt_nin                      |
+| array_partition      | variable=mult complete                                                | firmware/nnet_utils/nnet_dense_resource.h:219 in dense_resource_rf_gt_nin, mult                |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:223 in dense_resource_rf_gt_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:229 in dense_resource_rf_gt_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:239 in dense_resource_rf_gt_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:249 in dense_resource_rf_gt_nin                      |
+| inline               | recursive                                                             | firmware/nnet_utils/nnet_dense_resource.h:259 in dense_resource                                |
+| pipeline             | II=CONFIG_T::reuse_factor                                             | firmware/nnet_utils/nnet_dense_stream.h:16 in dense_latency_wrapper                            |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense_stream.h:29 in data_prepare                                     |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_dense_stream.h:34 in data_prepare                                     |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_stream.h:38 in data_prepare                                     |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_stream.h:46 in data_prepare                                     |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense_stream.h:54 in res_write                                        |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_dense_stream.h:59 in res_write                                        |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_stream.h:64 in res_write                                        |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_stream.h:74 in res_write                                        |
+| inline               | recursive                                                             | firmware/nnet_utils/nnet_dense_stream.h:85 in dense                                            |
+| array_partition      | variable=data complete                                                | firmware/nnet_utils/nnet_dense_stream.h:88 in dense, data                                      |
+| array_partition      | variable=res complete                                                 | firmware/nnet_utils/nnet_dense_stream.h:91 in dense, res                                       |
+| inline               |                                                                       | firmware/nnet_utils/nnet_function_stubs.h:59 in bit_shift                                      |
+| inline               |                                                                       | firmware/nnet_utils/nnet_function_stubs.h:66 in bit_shift                                      |
+| inline               |                                                                       | firmware/nnet_utils/nnet_function_stubs.h:73 in bit_shift                                      |
+| inline               |                                                                       | firmware/nnet_utils/nnet_function_stubs.h:80 in bit_shift                                      |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:25 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:34 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:46 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:58 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:72 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:82 in product                                                  |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:23 in clone_stream                                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:33 in clone_stream                                           |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:47 in clone_stream                                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:59 in clone_stream                                           |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:76 in clone_stream                                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:90 in clone_stream                                           |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:109 in clone_stream                                          |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:125 in clone_stream                                          |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:146 in clone_stream                                          |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:164 in clone_stream                                          |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:187 in clone_stream                                          |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:207 in clone_stream                                          |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:230 in repack_stream                                         |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:237 in repack_stream                                         |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:247 in repack_stream                                         |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:255 in repack_stream                                         |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:259 in repack_stream                                         |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:270 in repack_stream                                         |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:274 in repack_stream                                         |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:295 in broadcast_stream_1x1xc                                |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:298 in broadcast_stream_1x1xc                                |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:302 in broadcast_stream_1x1xc                                |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_stream.h:316 in broadcast_stream_hxwx1                                |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_stream.h:321 in broadcast_stream_hxwx1                                |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_types.h:28 in operator=                                               |
+| inline               |                                                                       | firmware/nnet_utils/pot_mult.h:18 in product                                                   |
++----------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+
+
